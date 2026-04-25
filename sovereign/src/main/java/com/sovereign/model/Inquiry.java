@@ -1,5 +1,6 @@
 package com.sovereign.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Inquiry {
     private String name;
     private String email;
     private String category;
+    @Column(name = "message", columnDefinition = "TEXT")
     private String message;
 
     public Inquiry(){}
