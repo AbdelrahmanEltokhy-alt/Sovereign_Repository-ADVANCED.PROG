@@ -151,7 +151,7 @@
 <div class="w-full lg:w-1/2 flex flex-col justify-center px-6 py-16 lg:px-24 bg-background relative">
 <div class="max-w-xl w-full mx-auto">
 <h2 class="font-headline-md text-headline-md text-white mb-12">Inquiry Details</h2>
-<form action="/inquiry/submit" class="space-y-8 relative">
+<form action="/inquiry/submit" method="post" class="space-y-8 relative">
 <!-- Name Input -->
 <div class="relative group">
 <input class="block w-full bg-transparent border-0 border-b border-outline/30 focus:border-[#D4AF37] focus:ring-0 px-0 py-3 text-on-surface font-body-md transition-colors duration-300 peer" id="name" name="name" placeholder=" " required="" type="text"/>
@@ -170,7 +170,7 @@
 <!-- Message Textarea -->
 <div class="relative group pt-4">
 <textarea class="block w-full bg-transparent border-0 border-b border-outline/30 focus:border-[#D4AF37] focus:ring-0 px-0 py-3 text-on-surface font-body-md transition-colors duration-300 peer resize-none" id="message" name="message" placeholder=" " rows="4"></textarea>
-<label class="absolute left-0 top-7 font-body-md text-on-surface-variant transition-all duration-300 origin-left pointer-events-none peer-focus:text-label-caps peer-focus:font-label-caps peer-focus:top-0" for="message">Additional Details (Optional)</label>
+<label class="absolute left-0 top-7 font-body-md text-on-surface-variant transition-all duration-300 origin-left pointer-events-none peer-focus:text-label-caps peer-focus:font-label-caps peer-focus:top-0" for="message">Comment</label>
 </div>
 <!-- Submit Button -->
 <div class="pt-8">

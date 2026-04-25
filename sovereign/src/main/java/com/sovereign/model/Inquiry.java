@@ -17,6 +17,8 @@ public class Inquiry {
     private String category;
     private String message;
 
+    public Inquiry(){}
+
     public Inquiry(String name, String email, String category, String message){
         this.name = name;
         this.email = email;
