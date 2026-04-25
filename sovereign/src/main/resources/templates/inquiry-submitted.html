@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Noto+Serif:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#454747",
+                    "outline-variant": "#4d4635",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface": "#131313",
+                    "on-primary": "#3c2f00",
+                    "surface-dim": "#131313",
+                    "primary-fixed-dim": "#e9c349",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "surface-container-highest": "#353535",
+                    "inverse-surface": "#e5e2e1",
+                    "primary-fixed": "#ffe088",
+                    "on-background": "#e5e2e1",
+                    "outline": "#99907c",
+                    "on-secondary-fixed-variant": "#474646",
+                    "on-error": "#690005",
+                    "surface-bright": "#393939",
+                    "surface-tint": "#e9c349",
+                    "tertiary": "#cecece",
+                    "inverse-primary": "#735c00",
+                    "secondary-container": "#4a4949",
+                    "on-surface-variant": "#d0c5af",
+                    "on-secondary": "#313030",
+                    "on-primary-container": "#554300",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-container": "#d4af37",
+                    "secondary": "#c8c6c5",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-variant": "#353535",
+                    "error-container": "#93000a",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container": "#20201f",
+                    "tertiary-container": "#b2b3b3",
+                    "background": "#131313",
+                    "on-secondary-container": "#bab8b7",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary": "#2f3131",
+                    "on-primary-fixed": "#241a00",
+                    "primary": "#f2ca50",
+                    "on-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-container": "#434546",
+                    "secondary-fixed": "#e5e2e1",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "container-max": "1440px",
+                    "section-padding": "120px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Noto Serif"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Noto Serif"],
+                    "headline-xl": ["Noto Serif"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            background-color: #131313;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-md border-b border-white/10">
+<div class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto w-full">
+<div class="text-2xl font-serif tracking-[0.2em] text-[#D4AF37]">SOVEREIGN</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-serif tracking-tight uppercase text-xs text-white/70 hover:text-[#D4AF37] transition-all duration-500" href="#">Models</a>
+<a class="font-serif tracking-tight uppercase text-xs text-white/70 hover:text-[#D4AF37] transition-all duration-500" href="#">Bespoke</a>
+<a class="font-serif tracking-tight uppercase text-xs text-white/70 hover:text-[#D4AF37] transition-all duration-500" href="#">Heritage</a>
+<a class="font-serif tracking-tight uppercase text-xs text-[#D4AF37] border-b border-[#D4AF37] pb-1" href="#">Inquire</a>
+</div>
+<button class="font-serif tracking-tight uppercase text-xs text-[#D4AF37] scale-95 active:scale-90 transition-transform">
+                Inquire
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="relative min-h-screen pt-32 pb-20 overflow-hidden">
+<!-- Subtle Background Image -->
+<div class="absolute inset-0 z-0 opacity-20 grayscale mix-blend-luminosity pointer-events-none">
+<img alt="" class="w-full h-full object-cover" data-alt="Close-up detail of a luxury automotive body line with soft cinematic shadows and high-contrast highlights in a minimalist dark setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqvFBuUl-wGD4RT1mN9A_6UKNtBzBdUuyWfRefJtSibNi_ZuInOMd4GuetNhJ1XE2dZa5PRT725hbuNUSee5C2PEva4sm1OfAneFw-olA9oDZvnaIKlt8v9eJcNWoztWVzMDBVv8-X8WU7KerUMQFg3RUDNUeskK2eAwwGYBFdlqpE7ELnBwHhNWAVrfMUkcu2WOETxRsUHYuReqiIJbNwqTEbVwgz4jRQnRnhFa1nCz9ZyxU7OckDwrSlFrDqRKcWbBIlJznNdm4"/>
+</div>
+<section class="relative z-10 max-w-4xl mx-auto px-8 flex flex-col items-center text-center">
+<!-- Icon Indicator -->
+<div class="mb-12 flex items-center justify-center w-20 h-20 rounded-full border border-[#D4AF37]/30 bg-neutral-900/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[#D4AF37] scale-150" data-icon="check_circle" style="font-variation-settings: 'FILL' 0;">check_circle</span>
+</div>
+<!-- Heading -->
+<h1 class="font-display-lg text-display-lg mb-6 text-on-background">Inquiry Received</h1>
+<!-- Subtext -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-16">
+                A dedicated concierge will review your inquiry and contact you within 24 hours.
+            </p>
+<!-- Summary Section: Bento Grid Inspired Details -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mb-20 text-left">
+<div class="p-8 border border-white/10 bg-neutral-900/40 backdrop-blur-md rounded-lg">
+<p class="font-label-caps text-label-caps text-[#D4AF37] mb-4">CLIENT IDENTITY</p>
+<p th:text="${inquiry.getName()}" class="font-headline-md text-headline-md text-on-background">Identity</p>
+</div>
+<div class="p-8 border border-white/10 bg-neutral-900/40 backdrop-blur-md rounded-lg">
+<p class="font-label-caps text-label-caps text-[#D4AF37] mb-4">CATEGORY</p>
+<p th:text="${inquiry.getCategory()}" class="font-headline-md text-headline-md text-on-background">Category</p>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="flex flex-col md:flex-row gap-6">
+<a class="px-12 py-5 bg-[#D4AF37] text-neutral-950 font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-all duration-300 scale-100 hover:scale-[1.02] active:scale-95 text-center" href="#">
+                    Explore Models
+                </a>
+<a class="px-12 py-5 border border-white/30 text-white font-label-caps text-label-caps hover:bg-white hover:text-neutral-950 transition-all duration-300 scale-100 hover:scale-[1.02] active:scale-95 text-center" href="#">
+                    Return to Collection
+                </a>
+</div>
+</section>
+<!-- Technical HUD Decorative Element -->
+<div class="hidden lg:block absolute bottom-12 right-12 text-right opacity-40">
+<div class="border-l border-[#D4AF37]/30 pl-6 py-2">
+<p class="font-label-caps text-label-caps text-[#D4AF37] mb-1">REFERENCE NO.</p>
+<p class="font-headline-md text-2xl text-on-background">SV-2024-8812</p>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-20 px-8 bg-neutral-950 border-t border-white/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto w-full">
+<div class="text-lg font-serif tracking-widest text-[#D4AF37]">SOVEREIGN</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-serif text-[10px] tracking-widest uppercase text-white/40 hover:text-[#D4AF37] transition-colors" href="#">Privacy Policy</a>
+<a class="font-serif text-[10px] tracking-widest uppercase text-white/40 hover:text-[#D4AF37] transition-colors" href="#">Terms of Service</a>
+<a class="font-serif text-[10px] tracking-widest uppercase text-white/40 hover:text-[#D4AF37] transition-colors" href="#">Legal Notice</a>
+<a class="font-serif text-[10px] tracking-widest uppercase text-white/40 hover:text-[#D4AF37] transition-colors" href="#">Sustainability</a>
+<a class="font-serif text-[10px] tracking-widest uppercase text-white/40 hover:text-[#D4AF37] transition-colors" href="#">Global Careers</a>
+</div>
+<p class="font-serif text-[10px] tracking-widest uppercase text-white/40">© 2024 SOVEREIGN AUTOMOTIVE. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+</body></html>
