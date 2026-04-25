@@ -25,9 +25,20 @@ public class InquiryController {
     }
 
     @GetMapping("/")
-    public String guh(Model model) {
+    public String loadForm(){
+        return "inquiry-form";
+    }
+
+    @GetMapping("/list")
+    public String listInquiries(Model model) {
         model.addAttribute("inquiries", dbs.listInquiries());
-        return "inquiry";
+        return "inquiry-list";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteInquiry(@PathVariable Long id){
+        dbs.deleteInquiry(id);
+        return "redirect:/inquiry/list";
     }
 
     @PostMapping("/submit")
@@ -42,4 +53,5 @@ public class InquiryController {
             return "inquiry-submitted";
         }
     }
+
 }
