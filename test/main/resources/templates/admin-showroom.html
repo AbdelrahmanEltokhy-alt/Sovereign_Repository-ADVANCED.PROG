@@ -1,0 +1,689 @@
+<html class="light" lang="en"><head></head><body class="font-['Inter'] antialiased tracking-tight bg-slate-950 overflow-x-hidden">```html
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#001e2f",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-container": "#d0e1fb",
+                    "tertiary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#d2e4ff",
+                    "outline-variant": "#c2c7d1",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "error-container": "#ffdad6",
+                    "on-background": "#191c1e",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#004c6e",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-surface": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "background": "#f7f9fb",
+                    "tertiary-container": "#004f73",
+                    "on-secondary-fixed": "#0b1c30",
+                    "surface-dim": "#d8dadc",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#8ebdf9",
+                    "primary-fixed-dim": "#a0c9ff",
+                    "surface-tint": "#2d6197",
+                    "tertiary": "#003752",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-primary-fixed": "#001c37",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#89ceff",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "outline": "#727780",
+                    "on-surface-variant": "#42474f",
+                    "surface-container": "#eceef0",
+                    "secondary": "#505f76",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "primary-container": "#0f4c81",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#00355f",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#54647a",
+                    "on-primary-fixed-variant": "#07497d",
+                    "on-tertiary-container": "#64c3ff",
+                    "inverse-primary": "#a0c9ff",
+                    "surface-container-high": "#e6e8ea"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "xl": "64px",
+                    "base": "8px",
+                    "sm": "12px",
+                    "margin": "32px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "lg": "48px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "h3": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h4": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.55", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h4": ["20px", {"lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+    <form action ="admin-showroom"  method="post">
+    
+    
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #020617; /* bg-slate-950 context from JSON */
+            color: #f8fafc;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<!-- SideNavBar -->
+<aside class="w-[260px] h-full fixed left-0 top-0 border-r border-slate-800 dark:border-slate-900 bg-slate-950 dark:bg-black flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-blue-600 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tighter text-slate-50 dark:text-white">Soverign Showroom</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">Luxury Automotive</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="bg-slate-900 dark:bg-white/5 text-white border-l-2 border-blue-500 px-4 py-3 cursor-pointer active:scale-95 transition-colors duration-200 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">storefront</span>
+<span class="font-label-md text-label-md">Showroom</span>
+</div>
+<div class="text-slate-400 hover:text-slate-100 hover:bg-slate-900 dark:hover:bg-white/5 px-4 py-3 cursor-pointer active:scale-95 transition-colors duration-200 flex items-center gap-3">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="text-slate-400 hover:text-slate-100 hover:bg-slate-900 dark:hover:bg-white/5 px-4 py-3 cursor-pointer active:scale-95 transition-colors duration-200 flex items-center gap-3">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Clients</span>
+</div>
+<div class="text-slate-400 hover:text-slate-100 hover:bg-slate-900 dark:hover:bg-white/5 px-4 py-3 cursor-pointer active:scale-95 transition-colors duration-200 flex items-center gap-3">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-label-md text-label-md">Soverign Team</span>
+</div>
+<div class="mt-auto">
+<div class="text-slate-400 hover:text-slate-100 hover:bg-slate-900 dark:hover:bg-white/5 px-4 py-3 cursor-pointer active:scale-95 transition-colors duration-200 flex items-center gap-3">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 h-16 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 dark:border-slate-900 flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-8">
+<h2 class="text-lg font-semibold text-slate-50 font-['Inter']">Showroom Overview</h2>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
+<input class="w-full bg-slate-900 border-none rounded text-slate-300 px-10 py-1.5 focus:ring-1 focus:ring-blue-500 text-sm" placeholder="Search inventory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-slate-50 transition-opacity opacity-100 hover:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-800 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold text-slate-50">Admin User</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider">Manager</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-slate-400 group-hover:text-blue-400 transition-colors">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<section class="p-8 space-y-8">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-h1 text-h1 text-slate-50 mb-2">Available Collection</h1>
+<p class="text-slate-400 font-body-md text-body-md max-w-2xl">Curated selection of the world's most prestigious automotive engineering, ready for immediate acquisition.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-slate-900 text-slate-50 border border-slate-800 rounded font-label-md text-label-md hover:bg-slate-800 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                    </button>
+<button class="px-4 py-2 bg-blue-600 text-white rounded font-label-md text-label-md hover:bg-blue-500 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Entry
+                    </button>
+</div>
+</div>
+<!-- Bento-style Stats Grid -->
+<div class="grid grid-cols-4 gap-6">
+<div class="col-span-1 bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1">Total Value</p>
+<p class="text-2xl font-bold text-slate-50">$24.8M</p>
+<div class="mt-4 flex items-center gap-2 text-emerald-500 text-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% from last month
+                    </div>
+</div>
+<div class="col-span-1 bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1">Inventory</p>
+<p class="text-2xl font-bold text-slate-50">142 Units</p>
+<div class="mt-4 flex items-center gap-2 text-blue-500 text-xs">
+<span class="material-symbols-outlined text-sm">sync</span> 8 new this week
+                    </div>
+</div>
+<div class="col-span-2 bg-gradient-to-br from-blue-600/20 to-transparent border border-blue-900/30 p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Featured Asset</p>
+<p class="text-2xl font-bold text-slate-50">2024 La Finale X</p>
+<p class="text-slate-400 text-sm mt-1">Exclusive showroom unveiling tonight at 8 PM.</p>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl text-white/5 rotate-12">auto_awesome</span>
+</div>
+</div>
+<!-- Car Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- Existing Row 1 -->
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close-up of a sleek black luxury sports car in a moody dark studio with sharp highlight reflections on its carbon fiber body" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZSe0Y6ajqWIpvmkgotiIbHzshmQMtv6xm_Zx9eCtFzcqMKqQZvCrMfXFSHs5cTzIRM4iRmCydg1JK_J4L0uOZ7fUNIZeYc3h1xCBrxkewe70xnEiaIpS6chnwvGVwnOVTi9CE-j4-Y6sCOfFe9QioPZDuzGHeNJHUP4GAD2c_VmaEXEROSgnjjWRP7ypqA6UZTj6LmGR6d6R6e104Ssh-6f0JXX4blumVg174UEZStwly923qyBXhRWNtFT5Mhd673q_YmqGLw6Y"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Zenith Apex</h3>
+<p class="text-slate-500 text-xs font-medium">2024 Track Series</p>
+</div>
+<p class="text-blue-400 font-bold">$485,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">820</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.4s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">217mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Front view of a white modern supercar with glowing headlights in a minimal concrete architectural setting at twilight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfwc9PH51FxaELJDYzNDsYlKqQZmPap8rtiJB8vuuBceZoUweNsQuaDcNO505Q37h-xzD9nkV5efG6M_BMdSFJHsb3uFDDOE9Zbd5v9JL8b0fek7LQODBNRXr-y5ywDFwy9Gy6cS5ZYFLI-NU5X_63bUQepaYEafgZ5PCp_jf6lKkRwAQKlINyupuFWlsvQVG72GXT83Mj2TmINvW13uUWeKw4R0Rz8qUg89PEKJmeA2XgJYfIVQWdO3_9ACzqYGLmuiwa09dpvWE"/>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 text-slate-400 text-[10px] font-bold px-2 py-1 rounded border border-slate-700">SOLD OUT</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Luminaire GT</h3>
+<p class="text-slate-500 text-xs font-medium">Heritage Edition</p>
+</div>
+<p class="text-slate-500 font-bold">$320,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">650</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">3.1s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">202mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Side profile of a midnight blue luxury sedan parked on a wet urban street with neon light reflections at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuButBfPHP7IF-vnHenFI5NET5Ei0KhEDP374dZBxZEAxFF-dBsyy7945AgF7WUxDAr_xBMaDQcaYtFkX1yAjHdzRMO0DkNbP-puQMeqPWWSKJLYKalQpien5oBODh2Zrcliw9xSFQw90T7bwZChY-A8YvBlkc4Yj001Y9QM6edv9SN7j_N5tr19d_xTlZs5tlBI3RhJvuLD0OzhhdSbSABekpY5NJ3rwRt9CaUftM_bIISTAdkr-ENlHYJn5E3frQU2w3D7aYpYVy8"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Midnight Phantom</h3>
+<p class="text-slate-500 text-xs font-medium">Grand Touring</p>
+</div>
+<p class="text-blue-400 font-bold">$195,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">540</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">3.8s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">190mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Aggressive front grille of a dark grey supercar with red interior details visible through the glass in a high-tech garage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlxFuBd9mE64y592VSwEXNxJwhInOBDin4gqhqLsdScugAbIze0zycRG3qeU9oJPdn9uiw0fEmtU_dVfOFfk9Zjzw2-qXdVAPvkChJdQeVvfqk6T_yI6i8iTbIfjnVNDzMSyUCawqEWdteHR-1V-IumZ9tY-y63ljSQ8ScWGRvrMoKtWiE2h-tMPfIupvxBtSW0j-jlf-Ot3RAHj9ynhj1Eih3G4s8eE-o3-zh33z7EX7HjvXp0hQZZlzTUHe39UdV7PssdgfJ3xk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Kinetix RS</h3>
+<p class="text-slate-500 text-xs font-medium">Competition Package</p>
+</div>
+<p class="text-blue-400 font-bold">$275,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">710</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.8s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">208mph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Existing Row 2 -->
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Rear view of a red sports car with distinctive tail lights and dual exhaust on a mountain road during sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKDpaScd2YGq15J_u0Rp7bxYH51x1z2WOTUrkLqLfHPplAMcGdkA3kLwfYhsfqa51HSonFh35yHK45ZDFToTZqxK9Trq8GWW7966S9mJckwbQGVIIRHVQ8UFjYU1yxYSoDsLsIkVTHOajljk2Wzr2J4Ik_dAcazUwWAxRXYZ8QgdhcXjWeUrqSuXBR-yH6zsVd3QRggaX7Bp7YDUhOX695h81ilzh7BbzpVn3lCQzVvunFioBQNu_ILw3AsQKYAxlMf8IOC8-q0p0"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Crimson Fury</h3>
+<p class="text-slate-500 text-xs font-medium">Roadster Z</p>
+</div>
+<p class="text-blue-400 font-bold">$145,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">420</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">4.2s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">175mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Elegant front three-quarter view of a silver luxury convertible parked in front of a modern glass mansion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc-28sQstTEkCpD7sMlF3TAg4TB0pC-2Kvduew67kiJY8fxYdFLjuRXP-Zh3Ka04sxhtomnbjgPsfjAV2xJwOr3JCgVsozBku7erJAh_i5YK7mMFYDcyTuOsTXKIvCpoufK-Zixf_n_7r_Ez-bXduAcM6lzUBunr6oL5NEXlco2ykTob7DNuA22LdsL0woQ6Oezs730QlLkSEJtH6gj1UbIrKxEBh69kGX0KdveVbLdr3a8ZNSba0mGN5XHRzSUGk0Zg8R80ks7xk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 text-slate-400 text-[10px] font-bold px-2 py-1 rounded border border-slate-700">SOLD OUT</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Silver Wing</h3>
+<p class="text-slate-500 text-xs font-medium">Open-top Lux</p>
+</div>
+<p class="text-slate-500 font-bold">$500,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">600</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">3.5s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">195mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close-up of a carbon fiber steering wheel with digital display and racing controls in a dark high-tech cockpit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsEGdNtJxAD-25hfaefRw3IzQ8KKy5HbO52SwvCAy2KZV4O7we5scyxIHulKEAA_QNyZ5IkjoW9YEeL1hYzqrJuKhXnLeFEhrVobRlYFoWpkjgSnxY0RPl3z54tAS3eZdhoEQ8Gl9MmC_eMHIY_ZeoW449g3WYuUV4M1tgxIt9EXfO-RcFkya4dUwXXJKJ97oz4djrtLZZQV0igUaU2twmnCpbiriSgu_mRdj6ub0mqYyk-xZvHfTSPxJd2dJvHlZyDNbLzcwdIvU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Carbon X</h3>
+<p class="text-slate-500 text-xs font-medium">Formula Tech</p>
+</div>
+<p class="text-blue-400 font-bold">$425,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">780</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.6s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">211mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Dramatic top-down view of a vintage-inspired modern luxury vehicle on a winding desert road at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQ3u930pdPionMvlfyUzXqCRFCxlCbG1sC3oVgeiIymTBvrCD6D3J9LcKRDe26LjE4Mcp7UVzMd6aTAvkI7Ib7_FodugkZzbR-p2KqZo4-Dv8xXa9w5a0h_IizY_7-MDA86MGTHRZRjr-_LBdIEglhWYq86V_wkWEKneJZNV8FNhh1ShSrRM8YZotlNFXZqRPOGqRjaEfjUhF2lVslW4ibLU1fcSjsVnPXRcJV1lGRgX2q_SdiA4GA5UiS-s0QavXR6R9IeV3lmE"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Nomad GT</h3>
+<p class="text-slate-500 text-xs font-medium">Touring Edition</p>
+</div>
+<p class="text-blue-400 font-bold">$115,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">380</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">4.8s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">165mph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Added 6 More Luxury Cards -->
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-detail shot of a golden luxury coupe's aerodynamic rear wing and carbon fiber detailing under soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtWhakcRIrNUX3pV0SBOwbDULO8ZCutP-SkfNOs552KWcW0PTAy5xJVApWu7H3Ng_PHtpTcmtkvtdPYcb9MdeDmlYCPgxMjFQwtaweauH4Bp2NCfB5dV2PU0r2N6cxUVmJ0mQQ9DMZLdRyUKoFbY_Ol8VZom_u0R581nEMCYhSnwxe_bFI_jyMXFr-POTMW9QctWaivVsYUCCeprtCBjvuIfHJQB-TTD7fQyg4FECeXKAjils0Hl6r27ElikoLPtlfNxK2a7Un490"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Aurum Spectre</h3>
+<p class="text-slate-500 text-xs font-medium">Prestige Series</p>
+</div>
+<p class="text-blue-400 font-bold">$610,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">920</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.1s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">235mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A matte emerald green hypercar parked in a minimalist architectural driveway at night with accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_HddzF31i_p1DfkMmNcyAieqeY76cvtdt9betLwDQu32Zzh8OLPkMrEo4syApMSHRfihA_EGAE4ysv66u-Nlb9gZ6BxK_Zsr41vu_CKUcai2AtHtif9uxa1Ctq1XZUqzISqhK8yAfKdATY-fhVppe1zwnIEyn3irOYNq0i9GCBIR7HXrum4B-YQCtqaXlfD7Dks7CdPM-OgOSKvhVKxHd-stzRPryyQIU1liGnUuYDCaVYcl_DYn1aENGRKZMgjQkrTN1NH84B5s"/>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 text-slate-400 text-[10px] font-bold px-2 py-1 rounded border border-slate-700">SOLD OUT</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Veridian Hyper</h3>
+<p class="text-slate-500 text-xs font-medium">Bespoke Collection</p>
+</div>
+<p class="text-slate-500 font-bold">$745,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">1050</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">1.9s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">258mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Low angle front view of a sharp, angular red supercar on a coastal road at blue hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgV3JX-tgUp-Q_T0EIdbuX8NeK-2dH7y9mXovUa5qbqJ2Lg-yRnB6aIBsf3W_vTf82jPUsfWVJkSmxG5nBEXs2IvfGczHXaeGOzIjRQlS_bD-YkWSL09oFpd4huJq3y3v1NZ692_HoBdCBLZH8wM_TorEp024sQg3VJwxODesa_CEaMKBapYZ6rP-pCljmFIBVx4WAZ88x9wbEm_4kYnjoz2ctqU0llD12qiSgL5xuqWv9fOOmryJbsPQsVwDFazByAk_9UeyiAxM"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Scarlet Veloce</h3>
+<p class="text-slate-500 text-xs font-medium">Super Leggera</p>
+</div>
+<p class="text-blue-400 font-bold">$410,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">740</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.7s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">212mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Futuristic electric luxury car with sleek continuous light bar across the front in a dark hangar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU0qO3bxXAxg3nKA5dLAN_qBtjxOhTS8XZlFpzpmXGfScC9xzWV5x9yWzXAQXZ4le9XycrdWYCr2P0LEXNphnEo0LvrPuxvGV9vUWBOFqB8ffh0ja6FsLQNgy4UB9XHRi2xXkEJtAg60-Jd8QSOdH7Ce1-bQqo40uXfslx2Qgb3Z466gRUlyZTgNcRPjRhqrRh9i41MThNtX_jGIVx4AuvHEAUg9Gpv8RJNmeqhggOd0PFVyT0tbiG7afI0fAwS6O_jjEcy1Lx-Vk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Volt Prime</h3>
+<p class="text-slate-500 text-xs font-medium">Electric Grand Tourer</p>
+</div>
+<p class="text-blue-400 font-bold">$185,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">1200</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">2.0s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">185mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Deep blue classic luxury sedan profile under dramatic spot lighting in a private museum" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_PjIWNLN2ji1RX6-dNDM3L3BcO6QLPjmHl8chyjcaHQsr_TdDGjwpouqZROCp-OBfA1GifZ0Q4GAjnxyiomr-uSw5Pf6xuC7MAZYfqD50HGGN3rJ5s7nvhcjcdi8fCixhP-UWqs0igWYNrN0xHNNO_EQPElI95YCmG5lM0gLX7wul7EAa2_ce2X9i53_U3afhUQG4eUvqRZ5ZdXYCj3bnaj9ZoZVhX5dEVGHYnggZuaC8ygGWrjgV3ON9hB1raTwU9PWhRqUz7j4"/>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 text-slate-400 text-[10px] font-bold px-2 py-1 rounded border border-slate-700">SOLD OUT</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Heritage VIII</h3>
+<p class="text-slate-500 text-xs font-medium">Classic Line</p>
+</div>
+<p class="text-slate-500 font-bold">$220,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">450</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">4.5s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">155mph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all">
+<div class="aspect-[16/10] overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Gunmetal grey luxury SUV with blacked out wheels parked in a modern industrial setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1wIAUG2nfFDAfPdMzcIjdXoJuVbfL0kwX9VvTaO4-irBl1fvmGGW1lwaz4wdR5KOoeNsxW5oXDj7q458MBIJ26qeJlPMj9wX56_lFEAVLMOZQPNcRLQ4f6sohOL68lEuLYJmAnNqupCRIXtir0vXqj0p54AX53jQ3G8gs6LM5O-p8B7SVvOJ0AMi04zDkpgs8-UUZ-mmrvZoEx6Hx5_2_rpidtuhF_zSPI5wmvK1R4G_hXvEpSflBfUPdJ24-EWaRUNBDW-4PgN0"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20">AVAILABLE</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-h4 text-h4 text-slate-100">Titan SUV</h3>
+<p class="text-slate-500 text-xs font-medium">Performance Luxury</p>
+</div>
+<p class="text-blue-400 font-bold">$168,000</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-800">
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">HP</p>
+<p class="text-xs font-bold text-slate-300">620</p>
+</div>
+<div class="text-center border-x border-slate-800">
+<p class="text-[10px] text-slate-500 uppercase">0-60</p>
+<p class="text-xs font-bold text-slate-300">3.8s</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-500 uppercase">Top</p>
+<p class="text-xs font-bold text-slate-300">170mph</p>
+</div>
+</div>
+</div>
+</div>
+<!-- End Added Cards -->
+<!-- Archive/Placeholder grid to maintain layout feel -->
+<div :key="i" class="bg-slate-900/40 border border-slate-800 rounded-lg overflow-hidden group cursor-pointer hover:border-blue-500/50 transition-all opacity-80 hover:opacity-100" v-for="i in 6">
+<div class="aspect-[16/10] overflow-hidden relative">
+<div class="w-full h-full bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-4xl">directions_car</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<h3 class="font-h4 text-h4 text-slate-100">Archive Model</h3>
+<p class="text-slate-500 text-xs font-medium">Series 1990-2023</p>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-center">
+<span class="bg-slate-800/80 text-slate-400 text-[10px] font-bold px-2 py-1 rounded border border-slate-700">RESERVED</span>
+<p class="text-blue-400 font-bold">$82,500</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- High-density Table for Inventory tracking -->
+</form>
+</main></body></html> 
