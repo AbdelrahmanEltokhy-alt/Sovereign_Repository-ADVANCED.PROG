@@ -2,31 +2,32 @@ package org.springframework.boot;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 @Entity
+@Table(name = "user details")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Long id;
     private String username;
     private String email;
     private String pass;
 
     public User() {}
 
-    public User(int id, String username, String email, String pass) {
+    public User(Long id, String username, String email, String pass) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.pass = pass;
     }
 
-    public int getId() { return id;}
-    public void setId(int id) { this.id = id;}
+    public Long getId() { return id;}
+    public void setId(Long id) { this.id = id;}
 
     
     public String getUsername() { return username; }
