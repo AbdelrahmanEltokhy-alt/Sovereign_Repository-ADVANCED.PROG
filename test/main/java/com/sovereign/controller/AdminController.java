@@ -3,7 +3,7 @@ import org.springframework.boot.AdminService;
 import org.springframework.boot.CarRepository;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/admin-service")
 public class AdminController {
 
