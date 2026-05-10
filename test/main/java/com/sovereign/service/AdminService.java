@@ -1,65 +1,55 @@
 package org.springframework.boot;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService {
 
-	// check  of admin or user will  enter
-public String checkUserRole(String email, String password) 
-{      
-
-	 if (email.equals("admin@gmail.com") && password.equals("123")) {
-	        return "ADMIN";
-	    }
-
-	    return "USER";
-	}
-
-//make price not negative value
-	public boolean isValidPrice(double price) {
-	    return price > 0; 
-	}
+	@Autowired
+    private CarRepository carRepository;
 	
-	 //  check availability of car (available or soldout)
-	public CarRepository buyCar(CarRepository car) {
+	    // check validity of admin
+    public boolean checkAdmin(String password) {
+        return password != null && password.equals("12345");
+    }
+                                   // check user validity
+    public boolean checkUserLogin(String email, String password) {
+        return email != null && password != null && !password.isEmpty();
+    }
+     // price validity(price not less than zero)
+    public boolean isValidPrice(int price) {
+        return price > 0;
+    }
+      
+    public CarRepository buyCar(CarRepository car) {
 
-	    if (car.getStatus().equals("SOLD_OUT")) {
-	        throw new RuntimeException("Car already sold");
-	    }
-	    else 
-	    {
-	    	System.out.println("this car are Available");  
-	}
-		return car;
-		
-	
-	}
+        if (!car.getStatus()) {
+            throw new RuntimeException("Car already sold");
+        }
+               
+        return car;      // when car available
+    }
+    // when admin add car price must be write price not negative
+    public CarRepository addCar(CarRepository car) {
 
-	public CarRepository addCar(CarRepository car) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public <car> String getCarStatus(long id) {
+        if (car.getPrice() <= 0) {
+            throw new RuntimeException("Price must be positive");
+        }
 
-	    CarRepository car =  CarRepository.findById(id).orElse(null);
+        return car;
+    }
+                               // car status(available or soldout)
+    public String getCarStatus(CarRepository car) {
 
-	    if (car == null) {
-	        return "Car not found";
-	    }
+        if (car == null) {
+            return "sold out";
+        }
 
-	    if (car.Status() == true) {
-	        return "AVAILABLE";
-	    }
-
-	    if (car.Status() == false) {
-	        return "SOLD OUT";
-	    }
-
-	    return "UNKNOWN";
-	}
-	
+        if (car.getStatus()) {
+            return "AVAILABLE";
+        } else {
+            return "SOLD OUT";
+        }
+    }
 }
