@@ -1,45 +1,44 @@
 package com.sovereign.controller;
 
-import com.sovereign.model.Inquiry;
-import com.sovereign.repository.InquiryRepository;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sovereign.model.Inquiry;
+import com.sovereign.service.DatabaseService;
+import com.sovereign.service.ValidationService;
+
 @Controller
 @RequestMapping("/inquiry")
 public class InquiryController {
 
-    private final InquiryRepository inquiryRepository;
+    private ValidationService validator;
+    private final DatabaseService dbs;
 
-    public InquiryController(InquiryRepository inquiryRepository) {
-        this.inquiryRepository = inquiryRepository;
+    InquiryController(DatabaseService dbs, ValidationService validator){
+        this.dbs = dbs;
+        this.validator = validator;
     }
 
-    @GetMapping
-    public String showForm(Model model) {
-        model.addAttribute("inquiry", new Inquiry());
+    @GetMapping("/")
+    public String loadForm(){
         return "inquiry-form";
     }
 
-    @PostMapping
-    public String submitInquiry(@Valid @ModelAttribute Inquiry inquiry,
-                                BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "inquiry-form";
+    @PostMapping("/submit")
+    public String sendInquiry(@ModelAttribute Inquiry inquiry, Model model){
+        if(!validator.validateInquiry(inquiry)){
+            model.addAttribute("errormsg", "Could not validate form entry");
+            return "error";
         }
-
-        inquiryRepository.save(inquiry);
-        return "redirect:/inquiry/submitted";
+        else{
+            dbs.addInquiry(inquiry);
+            model.addAttribute("inquiry", inquiry);
+            return "inquiry-submitted";
+        }
     }
 
-    @GetMapping("/submitted")
-    public String submitted() {
-        return "inquiry-submitted";
-    }
 }
