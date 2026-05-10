@@ -24,11 +24,12 @@ public class AdminService {
       
     public CarRepository buyCar(CarRepository car) {
 
-        if (!car.getStatus()) {
+       if(car.getStatus() == null)
+	   {
             throw new RuntimeException("Car already sold");
         }
-               
-        return car;      // when car available
+
+        return car;
     }
     // when admin add car price must be write price not negative
     public CarRepository addCar(CarRepository car) {
@@ -46,7 +47,7 @@ public class AdminService {
             return "sold out";
         }
 
-        if (car.getStatus()) {
+        if (car.getStatus() != null) {
             return "AVAILABLE";
         } else {
             return "SOLD OUT";
