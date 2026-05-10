@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Configure — ' + ${car.name} + ' | Sovereign'">Configure | Sovereign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --dark: #0A0A0A;
+            --dark-2: #111111;
+            --dark-3: #1A1A1A;
+            --mid: #2A2A2A;
+            --text: #F0EDE8;
+            --text-muted: #8A8580;
+            --white: #FAFAF8;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            font-family: var(--sans);
+            font-weight: 300;
+            min-height: 100vh;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            height: 68px;
+            background: var(--dark-2);
+            border-bottom: 1px solid rgba(201,168,76,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo .logo-s { color: var(--gold); font-weight: 600; }
+        .nav-logo .logo-line {
+            display: inline-block;
+            width: 1px; height: 16px;
+            background: rgba(201,168,76,0.5);
+            margin: 0 0.6rem;
+        }
+        .nav-logo .logo-sub {
+            font-family: var(--sans);
+            font-size: 0.5rem;
+            letter-spacing: 0.22em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+        .nav-back {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--gold); }
+
+        /* ── LAYOUT ── */
+        .page {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            min-height: calc(100vh - 68px);
+        }
+
+        /* ── LEFT: CAR PREVIEW ── */
+        .car-preview {
+            padding: 3rem;
+            border-right: 1px solid rgba(201,168,76,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .car-header .eyebrow {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .car-header h1 {
+            font-family: var(--serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1;
+        }
+        .car-header .car-type-badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border: 1px solid rgba(201,168,76,0.2);
+            padding: 0.3rem 0.8rem;
+        }
+        .car-img-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: var(--dark-3);
+            position: relative;
+        }
+        .car-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .car-img-box:hover img { transform: scale(1.03); }
+
+        /* Color picker */
+        .color-section h3 {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .color-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .color-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+        }
+        .color-swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .color-option:hover .color-swatch,
+        .color-option.active .color-swatch {
+            border-color: var(--gold);
+            transform: scale(1.15);
+        }
+        .color-option span {
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Specs strip */
+        .specs-strip {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(201,168,76,0.08);
+            border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+        .spec {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .spec .val {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1;
+        }
+        .spec .key {
+            font-size: 0.58rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ── RIGHT: MOD PANEL ── */
+        .mod-panel {
+            display: flex;
+            flex-direction: column;
+            background: var(--dark-2);
+        }
+        .mod-panel-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid rgba(201,168,76,0.1);
+        }
+        .mod-panel-header .eyebrow {
+            font-size: 0.58rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+        }
+        .mod-panel-header h2 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--white);
+        }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 2rem;
+            border-bottom: 1px solid rgba(201,168,76,0.08);
+            gap: 0;
+        }
+        .category-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-btn.active,
+        .tab-btn:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Mod list */
+        .mod-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 2rem;
+        }
+        .mod-list::-webkit-scrollbar { width: 4px; }
+        .mod-list::-webkit-scrollbar-track { background: transparent; }
+        .mod-list::-webkit-scrollbar-thumb { background: var(--mid); }
+
+        .category-group { display: none; }
+        .category-group.active { display: block; }
+        .category-group h4 {
+            font-size: 0.58rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 1rem 0 0.75rem;
+        }
+
+        .mod-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .mod-item:hover { background: rgba(201,168,76,0.03); margin: 0 -2rem; padding: 1rem 2rem; }
+        .mod-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(201,168,76,0.3);
+            background: transparent;
+            flex-shrink: 0;
+            margin-top: 2px;
+            position: relative;
+            cursor: pointer;
+            appearance: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .mod-checkbox:checked {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+        .mod-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        .mod-info { flex: 1; }
+        .mod-name {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.03em;
+        }
+        .mod-desc {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .mod-price {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--gold);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ── PRICE SUMMARY (sticky bottom) ── */
+        .price-summary {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(201,168,76,0.15);
+            background: var(--dark-3);
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .price-row .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .price-row .amount {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--text);
+        }
+        .price-divider {
+            height: 1px;
+            background: rgba(201,168,76,0.12);
+            margin: 0.75rem 0;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.25rem;
+        }
+        .total-row .total-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .total-row .total-amount {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        .btn-save {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-save:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+        /* ── SUCCESS BANNER ── */
+        .success-banner {
+            background: rgba(201,168,76,0.12);
+            border: 1px solid rgba(201,168,76,0.3);
+            padding: 0.85rem 2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* ── MOD COUNT BADGE ── */
+        .mod-count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px; height: 18px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 50%;
+            font-size: 0.55rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+    <a th:href="@{/}" class="nav-logo">
+        <span class="logo-s">S</span>OVEREIGN
+        <span class="logo-line"></span>
+        <span class="logo-sub">Automotive</span>
+    </a>
+    <a th:href="@{/catalog}" class="nav-back">← Back to Collection</a>
+</nav>
+
+<!-- ── SUCCESS BANNER (shown after save) ── -->
+<div class="success-banner" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+<!-- ── MAIN LAYOUT ── -->
+<div class="page">
+
+    <!-- ── LEFT: CAR PREVIEW ── -->
+    <div class="car-preview">
+
+        <div class="car-header">
+            <p class="eyebrow">Bespoke Configuration</p>
+            <h1 th:text="${car.name}">Car Name</h1>
+            <span class="car-type-badge" th:text="${car.type}">Grand Tourer</span>
+        </div>
+
+        <!-- Car image — replace src with th:src pointing to static folder -->
+        <div class="car-img-box">
+            <img th:src="@{/images/cars/{name}.jpg(name=${car.name.toLowerCase()})}"
+                 th:alt="${car.name}"
+                 src="/images/cars/placeholder.jpg">
+        </div>
+
+        <!-- Color picker -->
+        <div class="color-section">
+            <h3>Select Exterior Color</h3>
+            <div class="color-options">
+                <!-- th:each loops over car colors from DB -->
+                <div class="color-option active"
+                     th:each="color : ${car.colors}"
+                     th:onclick="'selectColor(this, \'' + ${color.name} + '\')'">
+                    <div class="color-swatch"
+                         th:style="'background:' + ${color.hexCode}"></div>
+                    <span th:text="${color.name}">Color Name</span>
+                </div>
+
+                <!-- Static fallback (remove once DB is wired) -->
+                <div class="color-option active" onclick="selectColor(this, 'Obsidian Black')">
+                    <div class="color-swatch" style="background:#1a1a1a;"></div>
+                    <span>Obsidian</span>
+                </div>
+                <div class="color-option" onclick="selectColor(this, 'Sovereign Gold')">
+                    <div class="color-swatch" style="background:#c9a84c;"></div>
+                    <span>Sovereign Gold</span>
+                </div>
+                <div class="color-option" onclick="selectColor(this, 'Ivory Pearl')">
+                    <div class="color-swatch" style="background:#f5f0e8; border:1px solid #333;"></div>
+                    <span>Ivory Pearl</span>
+                </div>
+                <div class="color-option" onclick="selectColor(this, 'Crimson Noir')">
+                    <div class="color-swatch" style="background:#6b0f0f;"></div>
+                    <span>Crimson Noir</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specs strip -->
+        <div class="specs-strip">
+            <div class="spec">
+                <span class="val" th:text="${car.horsepower} + 'hp'">650hp</span>
+                <span class="key">Power</span>
+            </div>
+            <div class="spec">
+                <span class="val" th:text="${car.zeroToSixty} + 's'">3.2s</span>
+                <span class="key">0–60 mph</span>
+            </div>
+            <div class="spec">
+                <span class="val" th:text="${car.topSpeed} + ' mph'">205 mph</span>
+                <span class="key">Top Speed</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── RIGHT: MOD PANEL ── -->
+    <div class="mod-panel">
+
+        <div class="mod-panel-header">
+            <p class="eyebrow">Sovereign Upgrades</p>
+            <h2>Select Your Mods <span class="mod-count-badge" id="modCount">0</span></h2>
+        </div>
+
+        <!-- Category tabs — built from keys of modsByCategory map -->
+        <div class="category-tabs" id="categoryTabs">
+            <button class="tab-btn active" onclick="switchTab(this, 'Engine')">Engine</button>
+            <button class="tab-btn" onclick="switchTab(this, 'Exterior')">Exterior</button>
+            <button class="tab-btn" onclick="switchTab(this, 'Interior')">Interior</button>
+            <button class="tab-btn" onclick="switchTab(this, 'Wheels')">Wheels</button>
+        </div>
+
+        <!-- Mod list — rendered per category by Thymeleaf -->
+        <form th:action="@{/configurator/{id}/save(id=${car.id})}"
+              method="post"
+              id="configuratorForm">
+
+            <div class="mod-list">
+
+                <!-- Thymeleaf loop: for each category group -->
+                <div th:each="entry : ${modsByCategory}"
+                     class="category-group"
+                     th:classappend="${entryStat.first} ? 'active'"
+                     th:id="'group-' + ${entry.key}">
+
+                    <h4 th:text="${entry.key}">Category</h4>
+
+                    <!-- For each mod in this category -->
+                    <div class="mod-item"
+                         th:each="mod : ${entry.value}"
+                         th:onclick="'toggleMod(this, ' + ${mod.id} + ', ' + ${mod.price} + ')'">
+
+                        <input type="checkbox"
+                               class="mod-checkbox"
+                               name="selectedModIds"
+                               th:value="${mod.id}"
+                               th:id="'mod-' + ${mod.id}"
+                               th:checked="${savedMods != null and savedMods.contains(mod.id)}">
+
+                        <div class="mod-info">
+                            <p class="mod-name" th:text="${mod.name}">Mod Name</p>
+                            <p class="mod-desc" th:text="${mod.description}">Mod description here.</p>
+                        </div>
+
+                        <span class="mod-price"
+                              th:text="'+ $' + ${#numbers.formatDecimal(mod.price, 0, 'COMMA', 0, 'POINT')}">
+                            + $5,000
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- ── STATIC FALLBACK (delete once DB is wired) ── -->
+                <!-- Shows sample mods so the page isn't empty during development -->
+                <div th:if="${modsByCategory == null or modsByCategory.isEmpty()}">
+
+                    <div class="category-group active" id="group-Engine">
+                        <h4>Engine</h4>
+                        <div class="mod-item" onclick="toggleMod(this, 1, 15000)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="1">
+                            <div class="mod-info">
+                                <p class="mod-name">Performance Exhaust System</p>
+                                <p class="mod-desc">Full titanium exhaust delivering +40hp and an unmistakable acoustic signature.</p>
+                            </div>
+                            <span class="mod-price">+ $15,000</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 2, 22000)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="2">
+                            <div class="mod-info">
+                                <p class="mod-name">Sport Turbocharger Kit</p>
+                                <p class="mod-desc">Upgraded twin-scroll turbos pushing an additional 120hp at peak boost.</p>
+                            </div>
+                            <span class="mod-price">+ $22,000</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 3, 8500)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="3">
+                            <div class="mod-info">
+                                <p class="mod-name">Carbon Fibre Engine Cover</p>
+                                <p class="mod-desc">Lightweight carbon cover with Sovereign crest — beauty under the bonnet.</p>
+                            </div>
+                            <span class="mod-price">+ $8,500</span>
+                        </div>
+                    </div>
+
+                    <div class="category-group" id="group-Exterior">
+                        <h4>Exterior</h4>
+                        <div class="mod-item" onclick="toggleMod(this, 4, 12000)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="4">
+                            <div class="mod-info">
+                                <p class="mod-name">Aero Body Kit</p>
+                                <p class="mod-desc">Full front splitter, side skirts, and rear diffuser — function meets form.</p>
+                            </div>
+                            <span class="mod-price">+ $12,000</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 5, 7500)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="5">
+                            <div class="mod-info">
+                                <p class="mod-name">Carbon Fibre Spoiler</p>
+                                <p class="mod-desc">Adjustable high-downforce spoiler, hand-laid carbon construction.</p>
+                            </div>
+                            <span class="mod-price">+ $7,500</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 6, 4200)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="6">
+                            <div class="mod-info">
+                                <p class="mod-name">Blacked-Out Chrome Package</p>
+                                <p class="mod-desc">All exterior chrome trim finished in gloss black for a stealth aesthetic.</p>
+                            </div>
+                            <span class="mod-price">+ $4,200</span>
+                        </div>
+                    </div>
+
+                    <div class="category-group" id="group-Interior">
+                        <h4>Interior</h4>
+                        <div class="mod-item" onclick="toggleMod(this, 7, 18000)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="7">
+                            <div class="mod-info">
+                                <p class="mod-name">Full Alcantara Interior</p>
+                                <p class="mod-desc">Floor-to-ceiling Alcantara suede — dashboard, headliner, door cards, seats.</p>
+                            </div>
+                            <span class="mod-price">+ $18,000</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 8, 9500)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="8">
+                            <div class="mod-info">
+                                <p class="mod-name">Sport Bucket Seats</p>
+                                <p class="mod-desc">Carbon-shell racing seats with full leather upholstery and Sovereign embossing.</p>
+                            </div>
+                            <span class="mod-price">+ $9,500</span>
+                        </div>
+                    </div>
+
+                    <div class="category-group" id="group-Wheels">
+                        <h4>Wheels</h4>
+                        <div class="mod-item" onclick="toggleMod(this, 9, 11000)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="9">
+                            <div class="mod-info">
+                                <p class="mod-name">22" Forged Alloy Wheels</p>
+                                <p class="mod-desc">Lightweight forged monoblock alloys in satin black with gold pinstripe.</p>
+                            </div>
+                            <span class="mod-price">+ $11,000</span>
+                        </div>
+                        <div class="mod-item" onclick="toggleMod(this, 10, 6800)">
+                            <input type="checkbox" class="mod-checkbox" name="selectedModIds" value="10">
+                            <div class="mod-info">
+                                <p class="mod-name">Sport Brake Caliper Kit</p>
+                                <p class="mod-desc">6-piston Brembo calipers finished in Sovereign Gold with carbon ceramic discs.</p>
+                            </div>
+                            <span class="mod-price">+ $6,800</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End static fallback -->
+
+            </div>
+
+            <!-- ── PRICE SUMMARY ── -->
+            <div class="price-summary">
+                <div class="price-row">
+                    <span class="label">Base Price</span>
+                    <span class="amount" id="basePrice"
+                          th:text="'$' + ${#numbers.formatDecimal(basePrice, 0, 'COMMA', 0, 'POINT')}">
+                        $285,000
+                    </span>
+                </div>
+                <div class="price-row">
+                    <span class="label">Selected Upgrades</span>
+                    <span class="amount" id="modsTotal">+ $0</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="total-row">
+                    <span class="total-label">Your Total</span>
+                    <span class="total-amount" id="grandTotal"
+                          th:text="'$' + ${#numbers.formatDecimal(basePrice, 0, 'COMMA', 0, 'POINT')}">
+                        $285,000
+                    </span>
+                </div>
+                <button type="submit" class="btn-save">Save My Configuration</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+    // ── BASE PRICE from Thymeleaf ──
+    // th:attr injects the raw number into data attribute for JS to read
+    const BASE_PRICE = parseFloat(document.getElementById('basePrice')
+        .textContent.replace(/[$,]/g, '')) || 0;
+
+    let selectedMods = {};  // { modId: price }
+
+    // ── Toggle a mod on/off ──
+    function toggleMod(row, modId, price) {
+        const checkbox = row.querySelector('.mod-checkbox');
+        checkbox.checked = !checkbox.checked;
+
+        if (checkbox.checked) {
+            selectedMods[modId] = price;
+            row.style.background = 'rgba(201,168,76,0.06)';
+        } else {
+            delete selectedMods[modId];
+            row.style.background = '';
+        }
+        updatePriceDisplay();
+    }
+
+    // ── Update price display in real time ──
+    function updatePriceDisplay() {
+        const modsTotal = Object.values(selectedMods).reduce((a, b) => a + b, 0);
+        const grand     = BASE_PRICE + modsTotal;
+        const count     = Object.keys(selectedMods).length;
+
+        document.getElementById('modsTotal').textContent =
+            '+ $' + modsTotal.toLocaleString('en-US');
+        document.getElementById('grandTotal').textContent =
+            '$' + grand.toLocaleString('en-US');
+        document.getElementById('modCount').textContent = count;
+    }
+
+    // ── Switch category tab ──
+    function switchTab(btn, category) {
+        // Deactivate all tabs
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        // Activate clicked tab
+        btn.classList.add('active');
+
+        // Hide all groups
+        document.querySelectorAll('.category-group').forEach(g => g.classList.remove('active'));
+        // Show selected group
+        const group = document.getElementById('group-' + category);
+        if (group) group.classList.add('active');
+    }
+
+    // ── Color selection ──
+    function selectColor(el, colorName) {
+        document.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    // ── Restore saved state (after form submit) ──
+    document.querySelectorAll('.mod-checkbox:checked').forEach(cb => {
+        const row   = cb.closest('.mod-item');
+        const price = parseFloat(cb.dataset.price || 0);
+        if (row && price) {
+            selectedMods[cb.value] = price;
+            row.style.background = 'rgba(201,168,76,0.06)';
+        }
+    });
+    updatePriceDisplay();
+</script>
+
+</body>
+</html>
