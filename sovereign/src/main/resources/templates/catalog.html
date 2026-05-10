@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Sovereign Collection — Showroom</title>
+  <meta name="description" content="Explore the Sovereign Collection — a curated gallery of the world's finest motor cars, each built to a singular vision of luxury and performance."/>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<div th:replace="~{fragments/navbar :: navbar(isSolid=true)}"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     CATALOG HEADER
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="catalog pt-nav" id="collection">
+  <div class="catalog-header">
+    <div class="catalog-header-left">
+      <p class="label">The Sovereign Collection</p>
+      <h1>Our Motor Cars</h1>
+    </div>
+    <span class="view-all" th:text="${#lists.size(cars)} + ' models available'"></span>
+  </div>
+
+  <div class="gold-line" style="margin-bottom: 3rem;"></div>
+
+  <!-- ── Car Grid ──────────────────────────────────────────────────────────── -->
+  <div class="cars-grid" id="car-grid">
+
+    <!-- Empty state -->
+    <div th:if="${#lists.isEmpty(cars)}"
+         style="grid-column: 1/-1; text-align: center; padding: 6rem 2rem;">
+      <p class="label">No vehicles currently in the showroom</p>
+      <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.85rem;">
+        Please check back soon — our collection is being curated.
+      </p>
+    </div>
+
+    <!-- Car Card (repeated for each car) -->
+    <article class="car-card reveal"
+             th:each="car : ${cars}"
+             th:id="'car-' + ${car.id}"
+             onclick="window.location = this.dataset.url"
+             th:data-url="@{/catalog/{id}(id=${car.id})}">
+
+      <!-- Image -->
+      <div class="car-img-wrap">
+        <!-- If a real image exists, show it; otherwise render a gradient placeholder -->
+        <img th:if="${!#strings.isEmpty(car.imageUrl)}"
+             th:src="${car.imageUrl}"
+             th:alt="${car.name}"
+             class="car-ph"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+        <div class="car-ph" th:style="'display:none; background: linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);'"></div>
+        <div class="car-img-overlay"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="car-card-body">
+        <p class="car-type" th:text="${car.type}">Grand Tourer</p>
+        <h2 class="car-name" th:text="${car.name}">Sovereign Phantom</h2>
+        <p class="car-desc" th:text="${car.tagline}">The most silent car in the world</p>
+
+        <div class="car-footer">
+          <span class="car-price">
+            From £<span th:text="${car.formattedPrice}">495,000</span>
+          </span>
+
+          <!-- Colour dots -->
+          <div class="color-dots">
+            <div class="color-dot"
+                 th:each="color, iter : ${car.colors}"
+                 th:if="${iter.index < 4}"
+                 th:style="'background:' + ${color.hexCode}"
+                 th:title="${color.name}">
+            </div>
+          </div>
+
+          <a th:href="@{/catalog/{id}(id=${car.id})}" class="car-link"
+             onclick="event.stopPropagation()">
+            Configure →
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+  </div><!-- /cars-grid -->
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT — Scroll reveal animation
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

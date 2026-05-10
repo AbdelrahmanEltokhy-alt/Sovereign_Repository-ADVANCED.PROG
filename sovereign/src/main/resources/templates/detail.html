@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title th:text="${car.name} + ' — Sovereign Automobiles'">Sovereign Car</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar(isSolid=true)}"></div>
+
+<!-- CAR HERO -->
+<section class="car-hero pt-nav" id="car-hero">
+
+  <!-- Left: Car Image or Placeholder -->
+  <div style="position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--dark-3);">
+    <img th:if="${not #strings.isEmpty(car.imageUrl)}"
+         th:src="${car.imageUrl}"
+         th:alt="${car.name}"
+         style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; z-index:1;"/>
+    
+    <!-- Fallback Gradient + Initial -->
+    <div style="position:absolute; inset:0; background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 40%, #16213e 100%);
+                display:flex; align-items:center; justify-content:center; z-index:0;">
+        <p style="font-family:var(--serif); font-size:10rem; font-weight:300;
+                  color:var(--gold); opacity:0.1;" th:text="${#strings.substring(car.name, 0, 1)}">S</p>
+    </div>
+
+    <!-- Back link overlay -->
+    <div style="position:absolute; top:2rem; left:2rem; z-index:10;">
+      <a th:href="@{/catalog}"
+         style="font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase;
+                color:var(--white); text-decoration:none; background:rgba(10,10,10,0.4); 
+                padding:0.6rem 1.2rem; backdrop-filter:blur(8px); border: 1px solid rgba(201,168,76,0.2);">
+        &larr; Collection
+      </a>
+    </div>
+  </div>
+
+  <!-- Right: Info panel -->
+  <div class="car-hero-info">
+    <p class="label" th:text="${car.type}">Grand Tourer</p>
+    <h1 th:text="${car.name}">Sovereign Phantom</h1>
+    <div class="divider"></div>
+    <p th:text="${car.description}">Description.</p>
+    <p style="font-family:var(--serif); font-size:1.5rem; color:var(--gold); margin-bottom:2rem;">
+      From &pound;<span th:text="${car.formattedPrice}">495,000</span>
+    </p>
+    <a th:href="@{/contact}" class="btn-primary" id="enquire-btn">Request a Commission</a>
+  </div>
+</section>
+
+<!-- COLOUR SELECTOR -->
+<section class="color-section reveal" id="colour-section">
+  <p class="label">Personalise</p>
+  <h2>Choose Your Colour</h2>
+  <div class="color-swatches" id="color-swatches">
+    <div class="swatch"
+         th:each="color, iter : ${car.colors}"
+         th:id="'swatch-' + ${color.id}"
+         th:attr="data-id=${color.id}, data-hex=${color.hexCode}, data-name=${color.name}"
+         onclick="selectColor(this.getAttribute('data-id'), this.getAttribute('data-hex'), this.getAttribute('data-name'))">
+      <div class="swatch-circle"
+           th:style="'background:' + ${color.hexCode}"
+           th:classappend="${iter.first} ? 'selected' : ''">
+      </div>
+      <span th:text="${color.name}">Colour Name</span>
+    </div>
+  </div>
+</section>
+
+<!-- BESPOKE MODIFICATIONS -->
+<section class="mods-section reveal" id="mods-section">
+  <p class="label">Bespoke Options</p>
+  <h2>Luxury Modifications</h2>
+
+  <div id="mod-tabs" style="display:flex; gap:1rem; margin-bottom:2rem; margin-top:1.5rem; flex-wrap:wrap;">
+    <button class="btn-primary btn-sm"   id="tab-all"         onclick="filterMods('All')">All</button>
+    <button class="btn-secondary btn-sm" id="tab-performance" onclick="filterMods('Performance')">Performance</button>
+    <button class="btn-secondary btn-sm" id="tab-interior"    onclick="filterMods('Interior')">Interior</button>
+    <button class="btn-secondary btn-sm" id="tab-exterior"    onclick="filterMods('Exterior')">Exterior</button>
+  </div>
+
+  <div class="mod-grid" id="mod-grid">
+    <div class="mod-card"
+         th:each="m : ${mods}"
+         th:id="'mod-' + ${m.id}"
+         th:attr="data-category=${m.category}">
+      <span class="mod-category" th:text="${m.category}">Category</span>
+      <h3 th:text="${m.name}">Mod Name</h3>
+      <p  th:text="${m.description}">Description.</p>
+      <span class="mod-price">+ &pound;<span th:text="${m.formattedPrice}">0</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO COLLECTION -->
+<section style="padding:5rem 4rem; text-align:center; background:var(--dark); " class="reveal">
+  <p class="label">Explore Further</p>
+  <h2 style="font-family:var(--serif); font-size:2.5rem; font-weight:300; margin:1rem 0 2rem;">
+    Discover the Full Collection
+  </h2>
+  <a th:href="@{/catalog}" class="btn-secondary" id="back-to-catalog">View All Motor Cars</a>
+</section>
+
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function selectColor(id, hex, name) {
+    document.querySelectorAll('.swatch-circle').forEach(c => c.classList.remove('selected'));
+    var el = document.querySelector('#swatch-' + id + ' .swatch-circle');
+    if (el) el.classList.add('selected');
+  }
+
+  function filterMods(category) {
+    document.querySelectorAll('#mod-tabs button').forEach(btn => {
+      btn.className = 'btn-secondary btn-sm';
+    });
+    var activeBtn = document.getElementById('tab-' + category.toLowerCase());
+    if (activeBtn) activeBtn.className = 'btn-primary btn-sm';
+
+    document.querySelectorAll('#mod-grid .mod-card').forEach(card => {
+      card.style.display =
+        (category === 'All' || card.getAttribute('data-category') === category) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

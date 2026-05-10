@@ -2,7 +2,7 @@ package com.sovereign.service;
 
 import com.sovereign.model.User;
 import com.sovereign.repository.UserRepository;
-import org.springframework.security.crypto.password.passwordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service

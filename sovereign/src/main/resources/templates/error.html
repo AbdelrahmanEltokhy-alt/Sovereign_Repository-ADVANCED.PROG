@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error — Sovereign</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .trace-box {
+            background: #111;
+            border: 1px solid rgba(201,168,76,0.2);
+            color: #e0c060;
+            padding: 1.5rem;
+            font-family: monospace;
+            font-size: 0.72rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 60vh;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body style="padding: 4rem;">
+    <h1 style="font-family: var(--serif); font-size:2rem; margin-bottom:1rem;">Error <span th:text="${status}">500</span></h1>
+    <p style="color:var(--gold); margin-bottom:1rem;" th:text="${error}">Internal Server Error</p>
+    <p style="color:#ffb4ab; margin-bottom:1.5rem;" th:text="${message}">No message available</p>
+
+    <div class="trace-box" th:text="${trace}">No trace available</div>
+
+    <br/>
+    <a th:href="@{/catalog}" class="btn-secondary">Back to Showroom</a>
+</body>
+</html>

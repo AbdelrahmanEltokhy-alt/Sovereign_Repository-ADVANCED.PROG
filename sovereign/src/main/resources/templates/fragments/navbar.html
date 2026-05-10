@@ -1,0 +1,18 @@
+<nav th:fragment="navbar(isSolid)" th:class="${isSolid} ? 'nav-solid' : ''" id="main-nav" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <a th:href="@{/}" class="nav-logo">
+    <span class="logo-s">S</span>overeign
+    <span class="logo-line"></span>
+    <span class="logo-sub">Automobiles</span>
+  </a>
+  <ul class="nav-links">
+    <li><a th:href="@{/}">Home</a></li>
+    <li><a th:href="@{/catalog}">Collection</a></li>
+    <li><a th:href="@{/contact}">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <span sec:authorize="isAuthenticated()" class="nav-user" sec:authentication="name"></span>
+    <a th:href="@{/user/login}"  sec:authorize="!isAuthenticated()" class="nav-icon">Sign In</a>
+    <a th:href="@{/user/logout}" sec:authorize="isAuthenticated()"  class="nav-icon">Sign Out</a>
+    <a th:href="@{/contact}" class="btn-nav">Enquire</a>
+  </div>
+</nav>

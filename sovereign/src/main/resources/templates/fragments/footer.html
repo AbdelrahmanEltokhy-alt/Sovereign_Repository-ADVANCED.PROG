@@ -1,0 +1,39 @@
+<footer th:fragment="footer" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a th:href="@{/}" class="logo">
+          <span class="logo-s">S</span>overeign
+        </a>
+        <p>Every motor car we build is a bespoke commission, an act of devotion to the art of luxury automotive engineering.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Collection</h4>
+        <ul>
+          <li><a th:href="@{/catalog}">All Models</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a th:href="@{/user/login}"    sec:authorize="!isAuthenticated()">Sign In</a></li>
+          <li><a th:href="@{/user/register}" sec:authorize="!isAuthenticated()">Register</a></li>
+          <li><a th:href="@{/user/logout}"   sec:authorize="isAuthenticated()">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Sovereign Automobiles. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
