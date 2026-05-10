@@ -1,5 +1,6 @@
 package org.springframework.boot;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -14,6 +15,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    
+     @Column(unique = true)     //To be sure all  users have unique email  
     private String email;
     private String pass;
 
