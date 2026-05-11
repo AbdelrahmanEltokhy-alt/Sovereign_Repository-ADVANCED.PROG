@@ -67,25 +67,46 @@
         <p class="car-desc" th:text="${car.tagline}">The most silent car in the world</p>
 
         <div class="car-footer">
-          <span class="car-price">
-            From £<span th:text="${car.formattedPrice}">495,000</span>
-          </span>
 
-          <!-- Colour dots -->
-          <div class="color-dots">
-            <div class="color-dot"
-                 th:each="color, iter : ${car.colors}"
-                 th:if="${iter.index < 4}"
-                 th:style="'background:' + ${color.hexCode}"
-                 th:title="${color.name}">
-            </div>
-          </div>
+      <span class="car-price">
+        From £<span th:text="${car.formattedPrice}">495,000</span>
+      </span>
 
-          <a th:href="@{/catalog/{id}(id=${car.id})}" class="car-link"
-             onclick="event.stopPropagation()">
-            Configure →
-          </a>
+      <!-- Colour dots -->
+      <div class="color-dots">
+        <div class="color-dot"
+            th:each="color, iter : ${car.colors}"
+            th:if="${iter.index < 4}"
+            th:style="'background:' + ${color.hexCode}"
+            th:title="${color.name}">
         </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+
+        <!-- Favorite -->
+        <form th:action="@{/session/favorite/{id}(id=${car.id})}"
+              method="post"
+              onclick="event.stopPropagation()">
+
+          <button type="submit"
+                  class="btn-secondary"
+                  style="padding:0.55rem 1rem; cursor:pointer;">
+            Favorite
+          </button>
+        </form>
+
+        <!-- Configure -->
+        <a th:href="@{/catalog/{id}(id=${car.id})}"
+          class="car-link"
+          onclick="event.stopPropagation()">
+          Configure →
+        </a>
+
+      </div>
+
+    </div>
       </div>
 
     </article>

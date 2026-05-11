@@ -1,190 +1,194 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sovereign Automobiles — The Art of Luxury</title>
-  <meta name="description" content="Sovereign Automobiles — handcrafted motor cars built to a singular vision of effortless luxury, performance, and bespoke beauty."/>
-  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <meta name="description"
+    content="Sovereign Automobiles — handcrafted motor cars built to a singular vision of effortless luxury, performance, and bespoke beauty." />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      NAVIGATION
      ═══════════════════════════════════════════════════════════════════════════ -->
-<div th:replace="~{fragments/navbar :: navbar(isSolid=false)}"></div>
+  <div th:replace="~{fragments/navbar :: navbar(isSolid=false)}"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      HERO
      ═══════════════════════════════════════════════════════════════════════════ -->
-<section id="hero"
-  style="min-height:100vh; display:flex; flex-direction:column; align-items:flex-start;
+  <section id="hero" style="min-height:100vh; display:flex; flex-direction:column; align-items:flex-start;
          justify-content:flex-end; padding:0 4rem 6rem;
          background: linear-gradient(135deg, #050505 0%, #0d0d1a 40%, #0a0a0a 100%);
          position:relative; overflow:hidden;">
 
-  <!-- Decorative gold radial glow -->
-  <div style="position:absolute; top:0; right:0; width:60%; height:100%;
+    <!-- Decorative gold radial glow -->
+    <div style="position:absolute; top:0; right:0; width:60%; height:100%;
               background: radial-gradient(ellipse at 70% 40%, rgba(201,168,76,0.07) 0%, transparent 65%);
               pointer-events:none;"></div>
 
-  <div style="position:relative; z-index:1; max-width:680px;">
-    <p class="label" style="animation: fadeUp 0.8s ease both;">Sovereign Automobiles</p>
-    <h1 style="font-family:var(--serif); font-size:clamp(3.5rem,8vw,7rem); font-weight:300;
+    <div style="position:relative; z-index:1; max-width:680px;">
+      <p class="label" style="animation: fadeUp 0.8s ease both;">Sovereign Automobiles</p>
+      <h1 style="font-family:var(--serif); font-size:clamp(3.5rem,8vw,7rem); font-weight:300;
                line-height:1.0; color:var(--text); margin:1.5rem 0;
                animation: fadeUp 0.8s 0.15s ease both;">
-      Effortless.<br/>
-      <em style="color:var(--gold); font-style:italic;">Extraordinary.</em>
-    </h1>
-    <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.85; max-width:480px;
+        Effortless.<br />
+        <em style="color:var(--gold); font-style:italic;">Extraordinary.</em>
+      </h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.85; max-width:480px;
               margin-bottom:2.5rem; animation: fadeUp 0.8s 0.3s ease both;">
-      Every motor car we build is a singular act of devotion to the craft of luxury.
-      Discover our collection — six models, each a world apart.
-    </p>
-    <div style="display:flex; gap:1.25rem; flex-wrap:wrap; animation: fadeUp 0.8s 0.45s ease both;">
-      <a th:href="@{/catalog}" class="btn-primary" id="hero-explore">Explore the Collection</a>
-      <a th:href="@{/contact}" class="btn-secondary" id="hero-contact">Request a Commission</a>
+        Every motor car we build is a singular act of devotion to the craft of luxury.
+        Discover our collection — six models, each a world apart.
+      </p>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap; animation: fadeUp 0.8s 0.45s ease both;">
+        <a th:href="@{/catalog}" class="btn-primary" id="hero-explore">Explore the Collection</a>
+        <a th:href="@{/contact}" class="btn-secondary" id="hero-contact">Request a Commission</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Scroll cue -->
-  <div style="position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
+    <!-- Scroll cue -->
+    <div style="position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
               display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
-    <span style="font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-muted);">
-      Scroll
-    </span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+      <span style="font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-muted);">
+        Scroll
+      </span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      HERITAGE STATS BAND
      ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="heritage reveal" id="heritage-band">
-  <div class="heritage-stat">
-    <div class="num">120</div>
-    <div class="label">Years of Heritage</div>
+  <div class="heritage reveal" id="heritage-band">
+    <div class="heritage-stat">
+      <div class="num">120</div>
+      <div class="label">Years of Heritage</div>
+    </div>
+    <div class="heritage-stat">
+      <div class="num">6</div>
+      <div class="label">Model Lines</div>
+    </div>
+    <div class="heritage-stat">
+      <div class="num">∞</div>
+      <div class="label">Bespoke Possibilities</div>
+    </div>
+    <div class="heritage-stat">
+      <div class="num">1</div>
+      <div class="label">Singular Vision</div>
+    </div>
   </div>
-  <div class="heritage-stat">
-    <div class="num">6</div>
-    <div class="label">Model Lines</div>
-  </div>
-  <div class="heritage-stat">
-    <div class="num">∞</div>
-    <div class="label">Bespoke Possibilities</div>
-  </div>
-  <div class="heritage-stat">
-    <div class="num">1</div>
-    <div class="label">Singular Vision</div>
-  </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      FEATURED CARS (dynamic — up to 3 from DB)
      ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="catalog reveal" id="featured-section"
-         th:if="${not #lists.isEmpty(featuredCars)}">
-  <div class="catalog-header">
-    <div class="catalog-header-left">
-      <p class="label">Featured</p>
-      <h2 style="font-family:var(--serif); font-size:3rem; font-weight:300; margin-top:0.75rem;">
-        The Sovereign Collection
-      </h2>
+  <section class="catalog reveal" id="featured-section" th:if="${not #lists.isEmpty(featuredCars)}">
+    <div class="catalog-header">
+      <div class="catalog-header-left">
+        <p class="label">Featured</p>
+        <h2 style="font-family:var(--serif); font-size:3rem; font-weight:300; margin-top:0.75rem;">
+          The Sovereign Collection
+        </h2>
+      </div>
+      <a th:href="@{/catalog}" class="view-all" id="view-all-link">
+        View All Motor Cars →
+      </a>
     </div>
-    <a th:href="@{/catalog}" class="view-all" id="view-all-link">
-      View All Motor Cars →
-    </a>
-  </div>
 
-  <div class="cars-grid" id="featured-grid">
-    <article class="car-card reveal"
-             th:each="car : ${featuredCars}"
-             th:id="'featured-' + ${car.id}"
-             onclick="window.location = this.dataset.url"
-             th:data-url="@{/catalog/{id}(id=${car.id})}">
+    <div class="cars-grid" id="featured-grid">
+      <article class="car-card reveal" th:each="car : ${featuredCars}" th:id="'featured-' + ${car.id}"
+        onclick="window.location = this.dataset.url" th:data-url="@{/catalog/{id}(id=${car.id})}">
 
-      <div class="car-img-wrap">
-        <img th:if="${!#strings.isEmpty(car.imageUrl)}"
-             th:src="${car.imageUrl}"
-             th:alt="${car.name}"
-             class="car-ph"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-        <div class="car-ph"
-             th:style="'display:none; background: linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);'"></div>
-        <div class="car-img-overlay"></div>
-      </div>
-
-      <div class="car-card-body">
-        <p class="car-type"   th:text="${car.type}">Grand Tourer</p>
-        <h3 class="car-name"  th:text="${car.name}">Sovereign Phantom</h3>
-        <p class="car-desc"   th:text="${car.tagline}">The most silent car in the world</p>
-        <div class="car-footer">
-          <span class="car-price">
-            From £<span th:text="${car.formattedPrice}">495,000</span>
-          </span>
-          <a th:href="@{/catalog/{id}(id=${car.id})}" class="car-link"
-             onclick="event.stopPropagation()">Configure →</a>
+        <div class="car-img-wrap">
+          <img th:if="${!#strings.isEmpty(car.imageUrl)}" th:src="${car.imageUrl}" th:alt="${car.name}" class="car-ph"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <div class="car-ph"
+            th:style="'display:none; background: linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);'"></div>
+          <div class="car-img-overlay"></div>
         </div>
-      </div>
-    </article>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+        <div class="car-card-body">
+          <p class="car-type" th:text="${car.type}">Grand Tourer</p>
+          <h3 class="car-name" th:text="${car.name}">Sovereign Phantom</h3>
+          <p class="car-desc" th:text="${car.tagline}">The most silent car in the world</p>
+          <div class="car-footer">
+            <span class="car-price">
+              From £<span th:text="${car.formattedPrice}">495,000</span>
+            </span>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+              <form th:action="@{/session/favorite/{id}(id=${car.id})}" method="post" onclick="event.stopPropagation()">
+                <button type="submit" class="btn-secondary" style="padding:0.55rem 1rem; cursor:pointer;">
+                  Favorite
+                </button>
+              </form>
+              <a th:href="@{/catalog/{id}(id=${car.id})}" class="car-link" onclick="event.stopPropagation()">
+                Configure →
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      FEATURE STRIP — Bespoke experience
      ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="feature-strip reveal" id="feature-strip">
-  <!-- Left: gradient image panel -->
-  <div class="feature-img-side"
-       style="background: linear-gradient(135deg, #0d1015 0%, #1a2030 50%, #0d1015 100%); min-height: 520px;">
-    <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-      <div style="text-align:center; padding:2rem;">
-        <p style="font-family:var(--serif); font-size:4rem; font-weight:300; color:var(--gold); opacity:0.4;">S</p>
-        <p class="label">Sovereign</p>
+  <div class="feature-strip reveal" id="feature-strip">
+    <!-- Left: gradient image panel -->
+    <div class="feature-img-side"
+      style="background: linear-gradient(135deg, #0d1015 0%, #1a2030 50%, #0d1015 100%); min-height: 520px;">
+      <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+        <div style="text-align:center; padding:2rem;">
+          <p style="font-family:var(--serif); font-size:4rem; font-weight:300; color:var(--gold); opacity:0.4;">S</p>
+          <p class="label">Sovereign</p>
+        </div>
       </div>
     </div>
+    <!-- Right: content -->
+    <div class="feature-content-side">
+      <p class="label">The Bespoke Experience</p>
+      <h2>Built around you,<br />alone</h2>
+      <p>
+        No two Sovereign motor cars are alike. Our bespoke programme allows you to
+        commission every element — from the thread count of the lambswool carpets
+        to the exact formula of your exterior paint, matched to any colour in the world.
+      </p>
+      <ul class="features-list">
+        <li>Handcrafted in our atelier over 400 hours</li>
+        <li>More than 44,000 possible exterior colour combinations</li>
+        <li>A dedicated Bespoke Designer assigned to your commission</li>
+        <li>Delivered to your door, anywhere in the world</li>
+      </ul>
+      <a th:href="@{/contact}" class="btn-primary" id="bespoke-cta">Begin Your Commission</a>
+    </div>
   </div>
-  <!-- Right: content -->
-  <div class="feature-content-side">
-    <p class="label">The Bespoke Experience</p>
-    <h2>Built around you,<br/>alone</h2>
-    <p>
-      No two Sovereign motor cars are alike. Our bespoke programme allows you to
-      commission every element — from the thread count of the lambswool carpets
-      to the exact formula of your exterior paint, matched to any colour in the world.
-    </p>
-    <ul class="features-list">
-      <li>Handcrafted in our atelier over 400 hours</li>
-      <li>More than 44,000 possible exterior colour combinations</li>
-      <li>A dedicated Bespoke Designer assigned to your commission</li>
-      <li>Delivered to your door, anywhere in the world</li>
-    </ul>
-    <a th:href="@{/contact}" class="btn-primary" id="bespoke-cta">Begin Your Commission</a>
-  </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      FOOTER
      ═══════════════════════════════════════════════════════════════════════════ -->
-<div th:replace="~{fragments/footer :: footer}"></div>
+  <div th:replace="~{fragments/footer :: footer}"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      JAVASCRIPT
      ═══════════════════════════════════════════════════════════════════════════ -->
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Nav scroll effect
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
+    // Nav scroll effect
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
 </body>
+
 </html>
