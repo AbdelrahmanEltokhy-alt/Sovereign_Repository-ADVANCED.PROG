@@ -97,6 +97,7 @@ public class ConfiguratorService {
     // from a different car (basic data integrity)
     public boolean modsBelongToCar(Long carId, List<Long> selectedModIds) {
         List<Mod> carMods = getModsForCar(carId);
+
         List<Long> validIds = carMods.stream()
                 .map(Mod::getId)
                 .collect(Collectors.toList());
