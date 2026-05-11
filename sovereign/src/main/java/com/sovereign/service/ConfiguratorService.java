@@ -100,6 +100,7 @@ public class ConfiguratorService {
         List<Long> validIds = carMods.stream()
                 .map(Mod::getId)
                 .collect(Collectors.toList());
+
         return validIds.containsAll(selectedModIds);
     }
 }
