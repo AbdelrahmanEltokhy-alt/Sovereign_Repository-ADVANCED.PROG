@@ -92,8 +92,9 @@ public class ConfiguratorController {
 
         double total = configuratorService.calculateTotal(carId, selectedModIds);
 
-        // Pass the final total and selected mods back to the page
-        model.addAttribute("car", configuratorService.getCarById(carId));
+        Car car = configuratorService.getCarById(carId);
+
+        model.addAttribute("car", car);
         model.addAttribute("modsByCategory",
                 configuratorService.getModsGroupedByCategory(carId));
         model.addAttribute("basePrice",
