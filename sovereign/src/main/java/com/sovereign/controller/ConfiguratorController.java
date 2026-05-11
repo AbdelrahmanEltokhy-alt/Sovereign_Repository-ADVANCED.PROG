@@ -97,8 +97,7 @@ public class ConfiguratorController {
         model.addAttribute("car", car);
         model.addAttribute("modsByCategory",
                 configuratorService.getModsGroupedByCategory(carId));
-        model.addAttribute("basePrice",
-                configuratorService.getCarById(carId).getBasePrice());
+        model.addAttribute("basePrice", car.getBasePrice());
         model.addAttribute("savedTotal", total);
         model.addAttribute("savedMods", selectedModIds);
         model.addAttribute("successMessage",
