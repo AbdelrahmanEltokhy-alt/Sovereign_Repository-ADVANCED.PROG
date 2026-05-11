@@ -60,6 +60,7 @@ public class ConfiguratorService {
     // Thymeleaf uses this to render mods in grouped sections
     public Map<String, List<Mod>> getModsGroupedByCategory(Long carId) {
         List<Mod> allMods = getModsForCar(carId);
+
         return allMods.stream()
                 .collect(Collectors.groupingBy(Mod::getCategory));
     }
