@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${car.name != null ? car.name + ' — Sovereign' : 'Car Detail — Sovereign'}">Sovereign</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main th:if="${car != null}">
+
+        <section class="car-hero">
+    <img th:src="${car.imageUrl ?: '/images/placeholder.jpg'}" th:alt="${car.name}" class="car-hero-img">
+    <div class="car-hero-info">
+        <h1 th:text="${car.name ?: 'Sovereign Model'}">Car Name</h1>
+        <p th:text="${car.description ?: 'Inquire for full specifications.'}">Description</p>
+        <p class="price" th:if="${car.price != null}" 
+           th:text="'Starting at $' + ${#numbers.formatDecimal(car.price, 0, 'COMMA', 0, 'POINT')}">
+            Price
+        </p>
+        <a th:href="@{/contact}" class="btn-primary">Request a Test Drive</a>
+    </div>
+</section>
+
+        <section class="color-section" th:if="${car.colors != null and !car.colors.empty}">
+    <h2>Choose Your Color</h2>
+    <div class="color-swatches">
+        <div class="swatch" th:each="color : ${car.colors}">
+            <div class="swatch-circle"
+                 th:style="'background-color: ' + ${color.hexCode ?: 'transparent'}"
+                 th:title="${color.name ?: 'Unnamed Color'}">
+            </div>
+            <span th:text="${color.name ?: 'Standard Paint'}">Color Name</span>
+        </div>
+    </div>
+</section>
+
+        <section class="mods-section" th:if="${car.mods != null and !car.mods.empty}">
+    <h2>Available Modifications</h2>
+    <div class="mod-grid">
+        <div class="mod-card" th:each="mod : ${car.mods}" th:if="${mod != null}">
+            <span class="mod-category" th:text="${mod.category ?: 'General'}">Category</span>
+            <h3 th:text="${mod.name ?: 'Performance Upgrade'}">Mod Name</h3>
+            <p th:text="${mod.description ?: 'No description available.'}">Description</p>
+            
+            <p class="mod-price" th:if="${mod.price != null and mod.price > 0}" 
+               th:text="'+ $' + ${#numbers.formatDecimal(mod.price, 0, 'COMMA', 0, 'POINT')}">
+                Price
+            </p>
+        </div>
+    </div>
+</section>
+
+        <div class="actions">
+            <a th:href="@{/cars}" class="btn-secondary">← Back to All Models</a>
+        </div>
+
+    </main>
+
+    <main th:unless="${car != null}">
+        <section class="error-section">
+            <h1>Car Not Found</h1>
+            <p>The model you're looking for doesn't exist in our inventory.</p>
+            <a th:href="@{/cars}" class="btn-primary">Back to Catalog</a>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

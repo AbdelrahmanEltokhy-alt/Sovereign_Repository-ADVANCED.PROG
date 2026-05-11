@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign — Manage Cars</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="admin-page">
+        <div class="admin-header">
+            <h1>Manage Cars</h1>
+            <a th:href="@{/admin/cars/new}" class="btn-primary">+ Add New Car</a>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Year</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="car : ${cars}">
+                    <td th:text="${car.id}">1</td>
+                    <td th:text="${car.name}">Name</td>
+                    <td th:text="${car.year}">2025</td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(car.price, 0, 'COMMA', 0, 'POINT')}">$0</td>
+                    <td>
+                        <!-- Edit button — links to pre-filled form -->
+                        <a th:href="@{/admin/cars/{id}/edit(id=${car.id})}" class="btn-secondary">Edit</a>
+
+                        <!--
+                          Delete uses a form with POST, not a plain link.
+                          You can't send DELETE from HTML — POST is used with a
+                          path that signals deletion. AdminController handles it.
+                        -->
+                        <form th:action="@{/admin/cars/{id}/delete(id=${car.id})}"
+                              method="post"
+                              style="display:inline"
+                              onsubmit="return confirm('Delete this car?')">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            <button type="submit" class="btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/admin}" class="btn-secondary">← Back to Dashboard</a>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

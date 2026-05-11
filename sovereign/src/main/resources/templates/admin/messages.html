@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign — Messages</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="admin-page">
+        <h1>Contact Messages</h1>
+
+        <p th:if="${messages.isEmpty()}">No messages yet.</p>
+
+        <table class="admin-table" th:if="${!messages.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Received</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="msg : ${messages}">
+                    <td th:text="${msg.name}">Name</td>
+                    <td th:text="${msg.email}">Email</td>
+                    <td th:text="${msg.message}">Message</td>
+                    <!--
+                      #temporals.format() formats a LocalDateTime into a readable string.
+                      This is a Thymeleaf utility — like calling DateTimeFormatter in Java.
+                    -->
+                    <td th:text="${#temporals.format(msg.createdAt, 'dd MMM yyyy HH:mm')}">Date</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/admin}" class="btn-secondary">← Back to Dashboard</a>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

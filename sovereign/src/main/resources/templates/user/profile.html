@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Sovereign — My Profile</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="pt-nav" style="min-height:calc(100vh - 76px);background:var(--dark, #0A0A0A);padding:5rem 4rem;">
+  <div style="max-width:720px;margin:0 auto;">
+
+    <!-- Header -->
+    <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#C9A84C;margin-bottom:0.75rem;">Member Account</p>
+    <div style="width:50px;height:1px;background:#C9A84C;margin-bottom:1.5rem;"></div>
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:2.8rem;font-weight:300;color:#F0EDE8;margin-bottom:3rem;">
+      Welcome, <em style="color:#C9A84C;" th:text="${user != null ? user.username : 'Member'}">Member</em>
+    </h1>
+
+    <!-- Profile card -->
+    <div style="border:1px solid rgba(201,168,76,0.2);background:#111111;padding:2.5rem;margin-bottom:2rem;">
+      <p style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:1.5rem;">Account Details</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+        <div>
+          <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#8A8580;margin-bottom:0.4rem;">Username</p>
+          <p style="font-size:1rem;color:#F0EDE8;" th:text="${user != null ? user.username : '-'}">username</p>
+        </div>
+        <div>
+          <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#8A8580;margin-bottom:0.4rem;">Email Address</p>
+          <p style="font-size:1rem;color:#F0EDE8;" th:text="${user != null ? user.email : '-'}">email@example.com</p>
+        </div>
+        <div>
+          <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#8A8580;margin-bottom:0.4rem;">Membership</p>
+          <p style="font-size:1rem;color:#F0EDE8;" th:text="${user != null ? user.role : 'USER'}">USER</p>
+        </div>
+        <div>
+          <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#8A8580;margin-bottom:0.4rem;">Status</p>
+          <p style="font-size:1rem;color:#C9A84C;">Active Member</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div style="border:1px solid rgba(201,168,76,0.2);background:#111111;padding:2.5rem;margin-bottom:2rem;">
+      <p style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:1.5rem;">Quick Actions</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a th:href="@{/cars}"
+           style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;
+                  letter-spacing:0.18em;text-transform:uppercase;color:#111;background:#C9A84C;
+                  padding:0.75rem 1.8rem;text-decoration:none;">
+          Browse Models
+        </a>
+        <a th:href="@{/contact}"
+           style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;
+                  letter-spacing:0.18em;text-transform:uppercase;color:#F0EDE8;background:transparent;
+                  border:1px solid rgba(255,255,255,0.2);padding:0.75rem 1.8rem;text-decoration:none;">
+          Book a Test Drive
+        </a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          <button type="submit"
+                  style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;
+                         letter-spacing:0.18em;text-transform:uppercase;color:#F0EDE8;background:transparent;
+                         border:1px solid rgba(255,255,255,0.2);padding:0.75rem 1.8rem;cursor:pointer;">
+            Sign Out
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Test drive / inquiry section -->
+    <div style="border:1px solid rgba(201,168,76,0.2);background:#111111;padding:2.5rem;">
+      <p style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:0.5rem;">Test Drive & Inquiries</p>
+      <p style="font-size:0.78rem;color:#8A8580;line-height:1.8;margin-bottom:1.5rem;">
+        Submit a test drive request through our Experience page. Our concierge team will reach out within 24 hours to confirm your appointment.
+      </p>
+      <a th:href="@{/contact}"
+         style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;
+                letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;text-decoration:none;
+                border-bottom:1px solid rgba(201,168,76,0.4);padding-bottom:2px;">
+        Request an Appointment →
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

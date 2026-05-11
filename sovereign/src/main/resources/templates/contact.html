@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign — Contact</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="form-page">
+        <div class="form-card">
+            <h1>Contact Us</h1>
+
+            <!--
+              ?success=true is added to the URL after a successful submission
+              by ContactController (return "redirect:/contact?success=true").
+              ${param.success} reads it here to show the confirmation message.
+            -->
+            <p th:if="${param.success}" class="success-msg">
+                Your message has been sent. We will be in touch shortly.
+            </p>
+
+            <form th:action="@{/contact}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

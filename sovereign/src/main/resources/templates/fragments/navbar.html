@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="navbar" class="nav-solid"
+     style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+            justify-content:space-between;padding:0 4rem;height:72px;
+            background:rgba(10,10,10,0.97);border-bottom:1px solid rgba(201,168,76,0.15);">
+
+  <!-- Logo -->
+  <a th:href="@{/}"
+     style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;
+            font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;
+            font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:#FAFAF8;">
+    <img th:src="@{/images/logo.webp}" alt="Sovereign"
+         style="height:32px;width:auto;" onerror="this.style.display='none'">
+    <span style="color:#C9A84C;font-weight:600;">S</span>OVEREIGN
+    <span style="display:inline-block;width:1px;height:18px;background:rgba(201,168,76,0.4);margin:0 0.6rem;vertical-align:middle;"></span>
+    <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.22em;color:#C9A84C;text-transform:uppercase;">Automotive</span>
+  </a>
+
+  <!-- Nav links -->
+  <ul style="display:flex;gap:2.5rem;list-style:none;">
+    <li><a th:href="@{/cars}"
+           style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:500;
+                  letter-spacing:0.18em;text-transform:uppercase;color:#F0EDE8;
+                  opacity:0.75;text-decoration:none;transition:opacity 0.2s;">Models</a></li>
+    <li><a th:href="@{/contact}"
+           style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:500;
+                  letter-spacing:0.18em;text-transform:uppercase;color:#F0EDE8;
+                  opacity:0.75;text-decoration:none;">Experience</a></li>
+  </ul>
+
+  <!-- Right side actions -->
+  <div style="display:flex; align-items:center; gap:2.5rem; position:relative; z-index:999;">
+    
+    <div sec:authorize="isAuthenticated()" style="display: flex; align-items: center; gap: 1.5rem;">
+        <a th:href="@{/user/profile}" 
+           style="color: #C9A84C; text-decoration: none; text-transform: uppercase; font-size: 0.7rem; z-index: 1000;">
+            <span sec:authentication="name">Username</span>
+        </a>
+
+        <form th:action="@{/logout}" method="post" style="margin: 0;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit" style="background: none; border: none; color: #F0EDE8; cursor: pointer; opacity: 0.7;">
+                Sign Out
+            </button>
+        </form>
+    </div>
+    </form>
+
+    <!-- Not logged in -->
+    <a sec:authorize="isAnonymous()"
+       th:href="@{/user/login}"
+       style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:500;
+              letter-spacing:0.18em;text-transform:uppercase;color:#F0EDE8;
+              opacity:0.7;text-decoration:none;">
+      Sign In
+    </a>
+
+    <a th:href="@{/cars}"
+       style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.62rem;
+              font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+              color:#111;background:#C9A84C;padding:0.55rem 1.25rem;text-decoration:none;">
+      Explore All
+    </a>
+  </div>
+</nav>
+</body>
+</html>

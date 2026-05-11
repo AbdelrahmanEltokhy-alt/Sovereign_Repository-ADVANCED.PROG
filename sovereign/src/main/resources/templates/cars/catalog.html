@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign — Models</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <h1>Our Models</h1>
+
+        <!--
+          th:each="car : ${cars}" — loops over the cars list from CarController.
+          This is the same as a for-each in Java, but written in the HTML.
+          ${cars} was added to the Model with model.addAttribute("cars", ...).
+          Same concept as the task-list.html th:each from Lect7.
+        -->
+        <div class="car-grid">
+            <div class="car-card" th:each="car : ${cars}">
+
+                <img th:src="@{${car.imageUrl}}" th:alt="${car.name}">
+
+                <div class="car-card-body">
+                    <h2 th:text="${car.name}">Car Name</h2>
+                    <p th:text="${car.description}">Description</p>
+                    <p class="price" th:text="'$' + ${#numbers.formatDecimal(car.price, 0, 'COMMA', 0, 'POINT')}">$0</p>
+
+                    <!-- Link to detail page — passes the car's ID in the URL -->
+                    <a th:href="@{/cars/{id}(id=${car.id})}" class="btn-primary">
+                        View Details
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

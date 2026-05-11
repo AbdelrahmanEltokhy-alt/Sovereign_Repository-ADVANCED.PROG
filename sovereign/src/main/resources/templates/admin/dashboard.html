@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign — Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="admin-page">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Quick stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p class="stat-label">Total Cars</p>
+                <!--
+                  ${cars.size()} calls the Java .size() method on the list
+                  passed by AdminController. Thymeleaf can call Java methods directly.
+                -->
+                <p class="stat-value" th:text="${cars.size()}">0</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Messages</p>
+                <p class="stat-value" th:text="${messages.size()}">0</p>
+            </div>
+        </div>
+
+        <!-- Quick nav -->
+        <div class="admin-nav">
+            <a th:href="@{/admin/cars}" class="btn-primary">Manage Cars</a>
+            <a th:href="@{/admin/messages}" class="btn-secondary">View Messages</a>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

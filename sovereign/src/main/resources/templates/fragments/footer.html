@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer"
+        style="background:#050505;border-top:1px solid rgba(201,168,76,0.15);padding:5rem 4rem 2.5rem;">
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;">
+
+    <!-- Brand -->
+    <div>
+      <a th:href="@{/}"
+         style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;margin-bottom:1rem;
+                font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:300;
+                letter-spacing:0.28em;text-transform:uppercase;color:#FAFAF8;">
+        <img th:src="@{/images/logo.webp}" alt="Sovereign"
+             style="height:28px;width:auto;" onerror="this.style.display='none'">
+        <span style="color:#C9A84C;">S</span>OVEREIGN
+      </a>
+      <p style="font-size:0.75rem;color:#8A8580;line-height:1.8;max-width:280px;">
+        Built for those who move through the world on their own terms.
+        Every Sovereign is a singular statement of craft, performance, and presence.
+      </p>
+    </div>
+
+    <!-- Models -->
+    <div>
+      <h4 style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.22em;
+                 text-transform:uppercase;color:#C9A84C;margin-bottom:1.25rem;font-weight:500;">Models</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+        <li><a th:href="@{/cars}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">All Models</a></li>
+        <li><a th:href="@{/cars/1}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Phantom</a></li>
+        <li><a th:href="@{/cars/2}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Wraith</a></li>
+        <li><a th:href="@{/cars/3}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Ghost</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div>
+      <h4 style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.22em;
+                 text-transform:uppercase;color:#C9A84C;margin-bottom:1.25rem;font-weight:500;">Services</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+        <li><a th:href="@{/contact}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Test Drive</a></li>
+        <li><a th:href="@{/contact}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Bespoke Commission</a></li>
+        <li><a th:href="@{/contact}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Account — no admin link here -->
+    <div>
+      <h4 style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.22em;
+                 text-transform:uppercase;color:#C9A84C;margin-bottom:1.25rem;font-weight:500;">Account</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+        <li><a th:href="@{/user/login}"    style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Sign In</a></li>
+        <li><a th:href="@{/user/register}" style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Create Account</a></li>
+        <li><a th:href="@{/user/profile}"  style="font-size:0.75rem;color:#8A8580;text-decoration:none;">My Profile</a></li>
+        <li><a th:href="@{/contact}"       style="font-size:0.75rem;color:#8A8580;text-decoration:none;">Get in Touch</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;
+              padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;gap:1rem;">
+    <p style="font-size:0.6rem;letter-spacing:0.08em;color:#474646;">
+      © 2026 Sovereign Automotive. All rights reserved. — Cairo
+    </p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#474646;text-decoration:none;">Instagram</a>
+      <a href="#" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#474646;text-decoration:none;">LinkedIn</a>
+      <a href="#" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#474646;text-decoration:none;">YouTube</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

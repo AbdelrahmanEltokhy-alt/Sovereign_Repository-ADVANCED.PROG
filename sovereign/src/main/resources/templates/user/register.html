@@ -16,7 +16,7 @@
             <!--
               POST /user/register is handled by UserController.processRegister().
               @RequestParam reads username, email, password from this form.
-              th:action="@{/register}" generates the correct URL automatically.
+              th:action="@{/user/register}" generates the correct URL automatically.
             -->
             <form th:action="@{/user/register}" method="post">
 
