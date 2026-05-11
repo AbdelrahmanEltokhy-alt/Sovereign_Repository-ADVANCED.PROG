@@ -9,42 +9,45 @@ public class AdminService {
 	@Autowired
     private CarRepository carRepository;
 	
-	    // check validity of admin
+	
     public boolean checkAdmin(String password) {
         return password != null && password.equals("12345");
     }
-                                   // check user validity
+
     public boolean checkUserLogin(String email, String password) {
         return email != null && password != null && !password.isEmpty();
     }
-     // price validity(price not less than zero)
+
     public boolean isValidPrice(int price) {
         return price > 0;
     }
-      
-    public CarRepository buyCar(CarRepository car) {
 
-       if(car.getStatus() == null)
-	   {
+    public CarRepository buyCar(CarRepository car) {
+            
+    	 if(car.getStatus() == null) {
             throw new RuntimeException("Car already sold");
         }
 
         return car;
     }
-    // when admin add car price must be write price not negative
-    public CarRepository addCar(CarRepository car) {
+
+    @Autowired
+    private CarRepository repo;
+
+    public Car addCar(Car car) {
 
         if (car.getPrice() <= 0) {
-            throw new RuntimeException("Price must be positive");
+            System.out.println("Enter price with positive value");
+            return null;
         }
 
-        return car;
+        return repo.save(car);
     }
-                               // car status(available or soldout)
+
     public String getCarStatus(CarRepository car) {
 
         if (car == null) {
-            return "sold out";
+            return "Car not found";
         }
 
         if (car.getStatus() != null) {
