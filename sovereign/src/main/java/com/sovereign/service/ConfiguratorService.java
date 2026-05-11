@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 @Service
 public class ConfiguratorService {
 
-    // Spring automatically injects these — no "new" needed
-    @Autowired
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
+    private final CarModRepository carModRepository;
+    private final ModRepository modRepository;
 
     @Autowired
     private CarModRepository carModRepository;
