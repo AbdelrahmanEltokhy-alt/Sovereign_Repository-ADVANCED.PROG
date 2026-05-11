@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Admin-Login</title>
+</head>
+
+<body class="bg-surface text-on-surface flex flex-col min-h-screen">
+
+<main class="flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md p-8 bg-gray-900 rounded-xl">
+
+        <h1 class="text-center text-2xl mb-6 text-white">SOVEREIGN LOGIN</h1>
+
+        <!-- Thymeleaf FORM -->
+        <form th:action="@{/Admin-login}" method="post" class="space-y-6">
+
+            <div>
+                <label class="text-sm text-gray-400">ADMIN EMAIL</label>
+                <input type="email"
+                       name="email"
+                       class="w-full p-2 mt-1 bg-transparent border-b border-gray-500 text-white"
+                       placeholder="admin@sovereign.automotive"
+                       required/>
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-400">PASSWORD</label>
+                <input type="password"
+                       name="password"
+                       class="w-full p-2 mt-1 bg-transparent border-b border-gray-500 text-white"
+                       required/>
+            </div>
+
+            <!-- error message -->
+            <p th:if="${error}" th:text="${error}" class="text-red-500 text-sm"></p>
+
+            <button type="submit"
+                    class="w-full bg-yellow-500 text-black py-3 font-bold hover:bg-yellow-400">
+                AUTHENTICATE
+            </button>
+
+        </form>
+    </div>
+
+</main>
+
+</body>
+</html>
