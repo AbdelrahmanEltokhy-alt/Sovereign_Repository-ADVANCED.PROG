@@ -3,6 +3,7 @@ package com.sovereign.model;
 import jakarta.persistence.*;
 
 @Entity
+//// when spring scans the whole project files
 @Table(name = "mods")
 public class Mod {
 
