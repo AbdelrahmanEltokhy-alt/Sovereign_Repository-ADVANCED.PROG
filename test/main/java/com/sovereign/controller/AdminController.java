@@ -1,6 +1,7 @@
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.AdminService;
 import org.springframework.boot.CarRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -11,19 +12,19 @@ public class AdminController {
     private AdminService service;
 
     @PostMapping("/login")
-    public boolean login(@RequestParam String email,
-                         @RequestParam String password) {
-
-        return service.checkUserLogin(email, password);
+    String ViewLoginForm()
+    {
+    	return "login" ;
     }
 
     @PostMapping("/admin-showroom")
-    public CarRepository addCar(@RequestBody CarRepository car) {
-        return service.addCar(car);
-    }
-
+   String AdminShowRoom()
+   {
+    	return "admin-showroom" ;
+   }
     @GetMapping("/car/status/{id}")
-    public String getStatus(@PathVariable CarRepository id) {
-        return service.getCarStatus(id);
-    }
+    String CarStatus()
+{
+	 return"car-status";
 }
+   }
