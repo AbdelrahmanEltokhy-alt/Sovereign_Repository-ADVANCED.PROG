@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Noto+Serif:wght@300&display=swap" rel="stylesheet"/>
+
     <script>
         tailwind.config = {
             theme: {
@@ -22,21 +26,25 @@
             }
         }
     </script>
+
     <style>
         .input-field {
             border: 1px solid #222;
             background: transparent;
             transition: all 0.3s ease;
         }
+
         .input-field:focus {
             border-color: #e9c176;
             outline: none;
         }
+
         .btn-gold {
             border: 1px solid #e9c176;
             color: #e9c176;
             transition: 0.4s ease;
         }
+
         .btn-gold:hover {
             background: #e9c176;
             color: #000;
@@ -46,52 +54,115 @@
 
 <body class="bg-background text-white font-sans min-h-screen flex flex-col">
 
-    <header class="p-8">
-        <div class="text-primary tracking-[0.5em] font-serif text-sm">ATELIER</div>
-    </header>
+<header class="p-8">
+    <div class="text-primary tracking-[0.5em] font-serif text-sm">
+        ATELIER
+    </div>
+</header>
 
-    <main class="flex-grow flex items-center justify-center px-6">
-        <div class="w-full max-w-sm">
-            
-            <div class="text-center mb-10">
-                <h1 class="font-serif text-2xl tracking-widest uppercase">Sovereign Atelier</h1>
-                <p class="text-[10px] text-zinc-500 tracking-[0.3em] mt-2 uppercase">Private Access Only</p>
+<main class="flex-grow flex items-center justify-center px-6">
+
+    <div class="w-full max-w-sm">
+
+        <div class="text-center mb-10">
+
+            <h1 class="font-serif text-2xl tracking-widest uppercase">
+                Sovereign Atelier
+            </h1>
+
+            <p class="text-[10px] text-zinc-500 tracking-[0.3em] mt-2 uppercase">
+                Private Access Only
+            </p>
+
+        </div>
+
+        <!-- Thymeleaf Form -->
+        <form th:action="@{/admin-service}" th:object="${user}" method="POST">
+
+            <div class="mb-4">
+
+                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
+                    USERNAME
+                </label>
+
+                <input
+                        type="text"
+                        th:field="*{username}"
+                        required
+                        class="input-field w-full p-3 text-sm">
+
             </div>
 
-        <form action="admin-service" method="POST">
-                <div>
-                    <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">USERNAME</label>
-                    <input type="text" name="username" required class="input-field w-full p-3 text-sm">
-                </div>
+            <div class="mb-4">
 
-                <div>
-  <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">EMAIL ADDRESS</label>
-    <input type="email" name="email" required class="input-field w-full p-3 text-sm">
-                </div>
+                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
+                    EMAIL ADDRESS
+                </label>
 
-                <div>
-                    <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">PASSWORD</label>
-                    <input type="password" name="password" required class="input-field w-full p-3 text-sm">
-                </div>
+                <input
+                        type="email"
+                        th:field="*{email}"
+                        required
+                        class="input-field w-full p-3 text-sm">
 
-                <button type="submit" class="btn-gold w-full py-4 mt-4 text-[11px] tracking-[0.3em] uppercase font-bold">
-                    Sign In
-                </button>
-            </form>
-
-            <div class="mt-8 text-center">
-                <a href="#" class="text-[9px] text-zinc-600 hover:text-primary tracking-widest uppercase transition">Request Access</a>
             </div>
-        </div>
-    </main>
 
-    <footer class="p-8 flex justify-between items-center text-[9px] text-zinc-700 tracking-widest uppercase">
-        <div>© 2024 ATELIER</div>
-        <div class="flex gap-6">
-            <a href="#" class="hover:text-primary">Privacy</a>
-            <a href="#" class="hover:text-primary">Support</a>
+            <div class="mb-6">
+
+                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
+                    PASSWORD
+                </label>
+
+                <input
+                        type="password"
+                        th:field="*{password}"
+                        required
+                        class="input-field w-full p-3 text-sm">
+
+            </div>
+
+            <button
+                    type="submit"
+                    class="btn-gold w-full py-4 mt-4 text-[11px] tracking-[0.3em] uppercase font-bold">
+
+                Sign In
+
+            </button>
+
+        </form>
+
+        <div class="mt-8 text-center">
+
+            <a href="#"
+               class="text-[9px] text-zinc-600 hover:text-primary tracking-widest uppercase transition">
+
+                Request Access
+
+            </a>
+
         </div>
-    </footer>
+
+    </div>
+
+</main>
+
+<footer class="p-8 flex justify-between items-center text-[9px] text-zinc-700 tracking-widest uppercase">
+
+    <div>© 2024 ATELIER</div>
+
+    <div class="flex gap-6">
+
+        <a href="#" class="hover:text-primary">
+            Privacy
+        </a>
+
+        <a href="#" class="hover:text-primary">
+            Support
+        </a>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
