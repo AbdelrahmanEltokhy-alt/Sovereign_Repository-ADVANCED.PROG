@@ -36,8 +36,13 @@ public class ConfiguratorService {
     @Autowired
     private CarModRepository carModRepository;
 
-    @Autowired
-    private ModRepository modRepository;
+    public ConfiguratorService(CarRepository carRepository,
+                               CarModRepository carModRepository,
+                               ModRepository modRepository) {
+        this.carRepository = carRepository;
+        this.carModRepository = carModRepository;
+        this.modRepository = modRepository;
+    }
 
     // ── 1. Get a car by ID ──────────────────────────────
     // Called by the controller to load the car details
