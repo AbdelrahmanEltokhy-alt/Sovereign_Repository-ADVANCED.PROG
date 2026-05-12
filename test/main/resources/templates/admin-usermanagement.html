@@ -9,160 +9,62 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Noto+Serif:wght@300&display=swap" rel="stylesheet"/>
 
+    <title>Login</title>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#e9c176",
-                        "background": "#0a0a0a",
-                        "surface": "#16130e",
+                        primary: "#e9c176",
+                        background: "#0a0a0a"
                     },
                     fontFamily: {
-                        "serif": ["Noto Serif", "serif"],
-                        "sans": ["Manrope", "sans-serif"],
+                        serif: ["Noto Serif", "serif"],
+                        sans: ["Manrope", "sans-serif"]
                     }
                 }
             }
         }
     </script>
-
-    <style>
-        .input-field {
-            border: 1px solid #222;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: #e9c176;
-            outline: none;
-        }
-
-        .btn-gold {
-            border: 1px solid #e9c176;
-            color: #e9c176;
-            transition: 0.4s ease;
-        }
-
-        .btn-gold:hover {
-            background: #e9c176;
-            color: #000;
-        }
-    </style>
 </head>
 
-<body class="bg-background text-white font-sans min-h-screen flex flex-col">
+<body class="bg-background text-white min-h-screen flex items-center justify-center">
 
-<header class="p-8">
-    <div class="text-primary tracking-[0.5em] font-serif text-sm">
-        ATELIER
+<div class="w-full max-w-sm">
+
+    <div class="text-center mb-10">
+        <h1 class="font-serif text-2xl tracking-widest uppercase">
+            Sovereign Atelier
+        </h1>
+        <p class="text-[10px] text-zinc-500 tracking-[0.3em] mt-2 uppercase">
+            Private Access Only
+        </p>
     </div>
-</header>
 
-<main class="flex-grow flex items-center justify-center px-6">
+    <!-- LOGIN FORM -->
+    <form action="/admin-service/login" method="POST">
 
-    <div class="w-full max-w-sm">
-
-        <div class="text-center mb-10">
-
-            <h1 class="font-serif text-2xl tracking-widest uppercase">
-                Sovereign Atelier
-            </h1>
-
-            <p class="text-[10px] text-zinc-500 tracking-[0.3em] mt-2 uppercase">
-                Private Access Only
-            </p>
-
+        <div class="mb-4">
+            <label class="text-[10px] text-zinc-400 block mb-2">EMAIL</label>
+            <input type="email" name="email"
+                   class="w-full p-3 bg-transparent border border-zinc-700 rounded text-sm">
         </div>
 
-        <!-- Thymeleaf Form -->
-        <form th:action="@{/admin-service}" th:object="${user}" method="POST">
-
-            <div class="mb-4">
-
-                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
-                    USERNAME
-                </label>
-
-                <input
-                        type="text"
-                        th:field="*{username}"
-                        required
-                        class="input-field w-full p-3 text-sm">
-
-            </div>
-
-            <div class="mb-4">
-
-                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
-                    EMAIL ADDRESS
-                </label>
-
-                <input
-                        type="email"
-                        th:field="*{email}"
-                        required
-                        class="input-field w-full p-3 text-sm">
-
-            </div>
-
-            <div class="mb-6">
-
-                <label class="text-[10px] tracking-widest text-zinc-400 block mb-2">
-                    PASSWORD
-                </label>
-
-                <input
-                        type="password"
-                        th:field="*{password}"
-                        required
-                        class="input-field w-full p-3 text-sm">
-
-            </div>
-
-            <button
-                    type="submit"
-                    class="btn-gold w-full py-4 mt-4 text-[11px] tracking-[0.3em] uppercase font-bold">
-
-                Sign In
-
-            </button>
-
-        </form>
-
-        <div class="mt-8 text-center">
-
-            <a href="#"
-               class="text-[9px] text-zinc-600 hover:text-primary tracking-widest uppercase transition">
-
-                Request Access
-
-            </a>
-
+        <div class="mb-6">
+            <label class="text-[10px] text-zinc-400 block mb-2">PASSWORD</label>
+            <input type="password" name="password"
+                   class="w-full p-3 bg-transparent border border-zinc-700 rounded text-sm">
         </div>
 
-    </div>
+        <button type="submit"
+                class="w-full border border-primary text-primary py-3 uppercase tracking-widest text-sm hover:bg-primary hover:text-black transition">
+            Sign In
+        </button>
+       <a href="/admin-panel">Go to Admin Panel</a>
+    </form>
 
-</main>
-
-<footer class="p-8 flex justify-between items-center text-[9px] text-zinc-700 tracking-widest uppercase">
-
-    <div>© 2024 ATELIER</div>
-
-    <div class="flex gap-6">
-
-        <a href="#" class="hover:text-primary">
-            Privacy
-        </a>
-
-        <a href="#" class="hover:text-primary">
-            Support
-        </a>
-
-    </div>
-
-</footer>
+</div>
 
 </body>
 </html>
