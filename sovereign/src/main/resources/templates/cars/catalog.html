@@ -1,108 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Sovereign Collection — All Models</title>
-  <meta name="description" content="Explore the full Sovereign Collection — 10 handcrafted motor cars, each a singular vision of luxury and performance."/>
-  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title>Sovereign — Models</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     CATALOG HEADER
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="catalog pt-nav" id="collection"
-         style="padding: 5rem 4rem 3rem;">
-  <div class="catalog-header">
-    <div class="catalog-header-left">
-      <p class="label">The Sovereign Collection</p>
-      <h1>Our Motor Cars</h1>
-    </div>
-    <span class="view-all"
-          th:text="${#lists.size(cars)} + ' models available'">10 models available</span>
-  </div>
-  <div class="gold-line" style="margin-bottom: 3rem;"></div>
+    <main>
+        <h1>Our Models</h1>
 
-  <!-- ── Car Grid ──────────────────────────────────────────────────────────── -->
-  <div class="cars-grid" id="car-grid">
+        <!--
+          th:each="car : ${cars}" — loops over the cars list from CarController.
+          This is the same as a for-each in Java, but written in the HTML.
+          ${cars} was added to the Model with model.addAttribute("cars", ...).
+          Same concept as the task-list.html th:each from Lect7.
+        -->
+        <div class="car-grid">
+            <div class="car-card" th:each="car : ${cars}">
 
-    <!-- Empty state -->
-    <div th:if="${#lists.isEmpty(cars)}"
-         style="grid-column: 1/-1; text-align: center; padding: 6rem 2rem;">
-      <p class="label">No vehicles currently in the showroom</p>
-      <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.85rem;">
-        Please check back soon — our collection is being curated.
-      </p>
-    </div>
+                <img th:src="@{${car.imageUrl}}" th:alt="${car.name}">
 
-    <!-- Car Card -->
-    <article class="car-card reveal"
-             th:each="car : ${cars}"
-             th:id="'car-' + ${car.id}"
-             onclick="window.location = this.dataset.url"
-             th:data-url="@{/cars/{id}(id=${car.id})}">
+                <div class="car-card-body">
+                    <h2 th:text="${car.name}">Car Name</h2>
+                    <p th:text="${car.description}">Description</p>
+                    <p class="price" th:text="'$' + ${#numbers.formatDecimal(car.price, 0, 'COMMA', 0, 'POINT')}">$0</p>
 
-      <!-- Image -->
-      <div class="car-img-wrap">
-        <img th:if="${not #strings.isEmpty(car.imageUrl)}"
-             th:src="${car.imageUrl}"
-             th:alt="${car.name}"
-             class="car-ph"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-        <div class="car-ph"
-             style="display:none; background: linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);
-                    align-items:center; justify-content:center;">
-          <span style="font-family:var(--serif); font-size:5rem; font-weight:300; color:var(--gold); opacity:0.2;"
-                th:text="${#strings.substring(car.name, 0, 1)}">S</span>
-        </div>
-        <div class="car-img-overlay"></div>
-      </div>
+                    <!-- Link to detail page — passes the car's ID in the URL -->
+                    <a th:href="@{/cars/{id}(id=${car.id})}" class="btn-primary">
+                        View Details
+                    </a>
+                </div>
 
-      <!-- Info -->
-      <div class="car-card-body">
-        <p class="car-type" th:text="${car.model}">Phantom</p>
-        <h2 class="car-name" th:text="${car.name}">Sovereign Phantom</h2>
-        <p class="car-desc" th:text="${car.description}">Description.</p>
-
-        <div class="car-footer">
-          <span class="car-price">
-            From $<span th:text="${car.formattedPrice}">250,000</span>
-          </span>
-
-          <!-- Colour dots -->
-          <div class="color-dots">
-            <div class="color-dot"
-                 th:each="color, iter : ${car.colors}"
-                 th:if="${iter.index < 4}"
-                 th:style="'background:' + ${color.hexCode}"
-                 th:title="${color.name}">
             </div>
-          </div>
-
-          <a th:href="@{/cars/{id}(id=${car.id})}" class="car-link"
-             onclick="event.stopPropagation()">
-            Configure →
-          </a>
         </div>
-      </div>
+    </main>
 
-    </article>
-
-  </div><!-- /cars-grid -->
-</section>
-
-<div th:replace="~{fragments/footer :: footer}"></div>
-
-<script>
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.08 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

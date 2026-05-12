@@ -1,175 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title th:text="${car.name} + ' — Sovereign Automobiles'">Sovereign Car</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title th:text="${car.name != null ? car.name + ' — Sovereign' : 'Car Detail — Sovereign'}">Sovereign</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     CAR HERO — split: image left, info right
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="car-hero pt-nav" id="car-hero">
+    <main th:if="${car != null}">
 
-  <!-- Left: Car Image -->
-  <div style="position:relative; overflow:hidden; background:var(--dark-3);">
-    <img th:if="${not #strings.isEmpty(car.imageUrl)}"
-         th:src="${car.imageUrl}"
-         th:alt="${car.name}"
-         class="car-hero-img"/>
-
-    <!-- Fallback gradient -->
-    <div th:if="${#strings.isEmpty(car.imageUrl)}"
-         style="width:100%; height:100%; min-height:500px; display:flex;
-                align-items:center; justify-content:center;
-                background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 40%, #16213e 100%);">
-      <p style="font-family:var(--serif); font-size:10rem; font-weight:300;
-                color:var(--gold); opacity:0.12;"
-         th:text="${#strings.substring(car.name, 0, 1)}">S</p>
+        <section class="car-hero">
+    <img th:src="${car.imageUrl ?: '/images/placeholder.jpg'}" th:alt="${car.name}" class="car-hero-img">
+    <div class="car-hero-info">
+        <h1 th:text="${car.name ?: 'Sovereign Model'}">Car Name</h1>
+        <p th:text="${car.description ?: 'Inquire for full specifications.'}">Description</p>
+        <p class="price" th:if="${car.price != null}" 
+           th:text="'Starting at $' + ${#numbers.formatDecimal(car.price, 0, 'COMMA', 0, 'POINT')}">
+            Price
+        </p>
+        <a th:href="@{/contact}" class="btn-primary">Request a Test Drive</a>
     </div>
-
-    <!-- Back to collection link -->
-    <div style="position:absolute; top:1.5rem; left:1.5rem; z-index:10;">
-      <a th:href="@{/cars}"
-         style="font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase;
-                color:var(--white); text-decoration:none;
-                background:rgba(10,10,10,0.5); padding:0.55rem 1.1rem;
-                backdrop-filter:blur(8px); border:1px solid rgba(201,168,76,0.25);">
-        ← Collection
-      </a>
-    </div>
-  </div>
-
-  <!-- Right: Info panel -->
-  <div class="car-hero-info">
-    <p class="label" th:text="${car.model}">Phantom</p>
-    <h1 th:text="${car.name}">Sovereign Phantom</h1>
-    <div class="divider"></div>
-    <p th:text="${car.description}">Description.</p>
-    <p style="font-family:var(--serif); font-size:1.5rem; color:var(--gold); margin-bottom:2rem;">
-      From $<span th:text="${car.formattedPrice}">250,000</span>
-    </p>
-    <a th:href="@{/contact}" class="btn-primary" id="enquire-btn">Request a Commission</a>
-  </div>
-
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     COLOUR SELECTOR
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="color-section reveal" id="colour-section"
-         th:if="${not #lists.isEmpty(car.colors)}">
-  <p class="label">Personalise</p>
-  <h2>Choose Your Colour</h2>
-  <div class="color-swatches" id="color-swatches">
-    <div class="swatch"
-         th:each="color, iter : ${car.colors}"
-         th:id="'swatch-' + ${color.id}"
-         th:attr="data-hex=${color.hexCode}, data-name=${color.name}"
-         onclick="selectColor(this)">
-      <div class="swatch-circle"
-           th:style="'background:' + ${color.hexCode}"
-           th:classappend="${iter.first} ? 'selected' : ''">
-      </div>
-      <span th:text="${color.name}">Colour Name</span>
+        <section class="color-section" th:if="${car.colors != null and !car.colors.empty}">
+    <h2>Choose Your Color</h2>
+    <div class="color-swatches">
+        <div class="swatch" th:each="color : ${car.colors}">
+            <div class="swatch-circle"
+                 th:style="'background-color: ' + ${color.hexCode ?: 'transparent'}"
+                 th:title="${color.name ?: 'Unnamed Color'}">
+            </div>
+            <span th:text="${color.name ?: 'Standard Paint'}">Color Name</span>
+        </div>
     </div>
-  </div>
-  <!-- Selected colour display -->
-  <p id="selected-color-label"
-     style="margin-top:1.25rem; font-size:0.7rem; letter-spacing:0.15em;
-            text-transform:uppercase; color:var(--gold);">
-    <span th:text="${car.colors[0].name}">Midnight Black</span> selected
-  </p>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     BESPOKE MODIFICATIONS
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="mods-section reveal" id="mods-section"
-         th:if="${not #lists.isEmpty(car.mods)}">
-  <p class="label">Bespoke Options</p>
-  <h2>Luxury Modifications</h2>
-
-  <!-- Category filter tabs -->
-  <div id="mod-tabs"
-       style="display:flex; gap:1rem; margin:1.5rem 0 2rem; flex-wrap:wrap;">
-    <button class="btn-primary  btn-sm" id="tab-all"
-            onclick="filterMods('All')">All</button>
-    <button class="btn-secondary btn-sm" id="tab-Exterior"
-            onclick="filterMods('Exterior')">Exterior</button>
-    <button class="btn-secondary btn-sm" id="tab-Performance"
-            onclick="filterMods('Performance')">Performance</button>
-    <button class="btn-secondary btn-sm" id="tab-Interior"
-            onclick="filterMods('Interior')">Interior</button>
-    <button class="btn-secondary btn-sm" id="tab-Wheels"
-            onclick="filterMods('Wheels')">Wheels</button>
-    <button class="btn-secondary btn-sm" id="tab-Technology"
-            onclick="filterMods('Technology')">Technology</button>
-    <button class="btn-secondary btn-sm" id="tab-Aerodynamics"
-            onclick="filterMods('Aerodynamics')">Aerodynamics</button>
-  </div>
-
-  <div class="mod-grid" id="mod-grid">
-    <div class="mod-card"
-         th:each="m : ${car.mods}"
-         th:id="'mod-' + ${m.id}"
-         th:attr="data-category=${m.category}">
-      <span class="mod-category" th:text="${m.category}">Category</span>
-      <h3 th:text="${m.name}">Mod Name</h3>
-      <p  th:text="${m.description}">Description.</p>
-      <span class="mod-price">+ $<span th:text="${m.formattedPrice}">0</span></span>
+        <section class="mods-section" th:if="${car.mods != null and !car.mods.empty}">
+    <h2>Available Modifications</h2>
+    <div class="mod-grid">
+        <div class="mod-card" th:each="mod : ${car.mods}" th:if="${mod != null}">
+            <span class="mod-category" th:text="${mod.category ?: 'General'}">Category</span>
+            <h3 th:text="${mod.name ?: 'Performance Upgrade'}">Mod Name</h3>
+            <p th:text="${mod.description ?: 'No description available.'}">Description</p>
+            
+            <p class="mod-price" th:if="${mod.price != null and mod.price > 0}" 
+               th:text="'+ $' + ${#numbers.formatDecimal(mod.price, 0, 'COMMA', 0, 'POINT')}">
+                Price
+            </p>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     BACK TO COLLECTION CTA
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="reveal"
-         style="padding:5rem 4rem; text-align:center; background:var(--dark);">
-  <p class="label">Explore Further</p>
-  <h2 style="font-family:var(--serif); font-size:2.5rem; font-weight:300; margin:1rem 0 2rem;">
-    Discover the Full Collection
-  </h2>
-  <a th:href="@{/cars}" class="btn-secondary" id="back-to-catalog">View All Motor Cars</a>
-</section>
+        <div class="actions">
+            <a th:href="@{/cars}" class="btn-secondary">← Back to All Models</a>
+        </div>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+    </main>
 
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.08 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <main th:unless="${car != null}">
+        <section class="error-section">
+            <h1>Car Not Found</h1>
+            <p>The model you're looking for doesn't exist in our inventory.</p>
+            <a th:href="@{/cars}" class="btn-primary">Back to Catalog</a>
+        </section>
+    </main>
 
-  // Colour swatch selection
-  function selectColor(el) {
-    document.querySelectorAll('.swatch-circle').forEach(c => c.classList.remove('selected'));
-    el.querySelector('.swatch-circle').classList.add('selected');
-    const label = document.getElementById('selected-color-label');
-    if (label) label.innerHTML = el.getAttribute('data-name') + ' selected';
-  }
-
-  // Mod category filter
-  function filterMods(category) {
-    // Reset tab styles
-    document.querySelectorAll('#mod-tabs button').forEach(btn => btn.className = 'btn-secondary btn-sm');
-    const active = document.getElementById('tab-' + category);
-    if (active) active.className = 'btn-primary btn-sm';
-
-    // Show/hide mod cards
-    document.querySelectorAll('#mod-grid .mod-card').forEach(card => {
-      card.style.display =
-        (category === 'All' || card.getAttribute('data-category') === category) ? '' : 'none';
-    });
-  }
-</script>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
