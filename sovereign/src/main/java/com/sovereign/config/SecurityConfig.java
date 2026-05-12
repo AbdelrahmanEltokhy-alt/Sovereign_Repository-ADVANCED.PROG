@@ -27,8 +27,9 @@ public class SecurityConfig{
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/css/**", "/js/**" , "/images/**").permitAll()
-                .requestMatchers("/", "/cars/**", "/contact/**", "/user/**").permitAll()
+                .requestMatchers("/wishlist/**").authenticated()
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/h2-console/**").permitAll()
+                .requestMatchers("/", "/cars/**", "/contact/**", "/user/**", "/error").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -40,6 +41,12 @@ public class SecurityConfig{
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
                 .permitAll()
+            )
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**")
+            )
+            .headers(headers -> headers
+                .frameOptions(frame -> frame.sameOrigin())
             );
             return http.build();
         }
