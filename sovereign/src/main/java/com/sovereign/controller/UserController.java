@@ -30,9 +30,9 @@ public class UserController {
 
     @PostMapping("/register")
     public String processRegister(@RequestParam String username,
-                                  @RequestParam String email,
-                                  @RequestParam String password,
-                                  Model model) {
+            @RequestParam String email,
+            @RequestParam String password,
+            Model model) {
         boolean success = userService.register(username, email, password);
         if (!success) {
             model.addAttribute("error", "Username or email already taken.");
@@ -52,7 +52,8 @@ public class UserController {
      */
     @GetMapping("/profile")
     public String showProfile(Authentication authentication, Model model) {
-        if (authentication == null) return "redirect:/user/login";
+        if (authentication == null)
+            return "redirect:/user/login";
 
         String username = authentication.getName();
         userRepository.findByUsername(username).ifPresent(user -> {
