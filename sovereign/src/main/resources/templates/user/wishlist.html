@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Vault — Sovereign</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="pt-nav" style="min-height:calc(100vh - 76px); background:var(--dark, #0A0A0A); padding:5rem 4rem;">
+  <div style="max-width:1200px; margin:0 auto;">
+
+    <!-- Header -->
+    <p style="font-size:0.65rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#C9A84C; margin-bottom:0.75rem;">Personal Vault</p>
+    <div style="width:50px; height:1px; background:#C9A84C; margin-bottom:1.5rem;"></div>
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2.8rem; font-weight:300; color:#F0EDE8; margin-bottom:3rem;">
+      Your Saved <em style="color:#C9A84C;">Motor Cars</em>
+    </h1>
+
+    <!-- Empty state -->
+    <div th:if="${#lists.isEmpty(cars)}"
+         style="text-align:center; padding:6rem 2rem; border:1px solid rgba(201,168,76,0.15); background:#111;">
+      <p style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.8rem; font-weight:300; color:#F0EDE8; margin-bottom:1rem;">
+        Your vault is empty
+      </p>
+      <p style="font-size:0.8rem; color:#8A8580; margin-bottom:2rem;">
+        Explore our collection and save the models that speak to you.
+      </p>
+      <a th:href="@{/cars}"
+         style="display:inline-block; font-size:0.65rem; font-weight:600; letter-spacing:0.2em;
+                text-transform:uppercase; background:#C9A84C; color:#111; padding:1rem 2.5rem;
+                text-decoration:none;">
+        Browse Collection
+      </a>
+    </div>
+
+    <!-- Wishlist Grid -->
+    <div class="cars-grid" th:if="${!#lists.isEmpty(cars)}">
+      <article class="car-card" th:each="car : ${cars}">
+
+        <!-- Image -->
+        <div class="car-img-wrap">
+          <img th:if="${not #strings.isEmpty(car.imageUrl)}"
+               th:src="${car.imageUrl}"
+               th:alt="${car.name}"
+               class="car-ph"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="car-ph"
+               style="display:none; background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);
+                      align-items:center; justify-content:center;">
+            <span style="font-family:var(--serif); font-size:5rem; font-weight:300; color:var(--gold); opacity:0.2;"
+                  th:text="${#strings.substring(car.name, 0, 1)}">S</span>
+          </div>
+          <div class="car-img-overlay"></div>
+        </div>
+
+        <!-- Info -->
+        <div class="car-card-body">
+          <p class="car-type" th:text="${car.model}">Model</p>
+          <h2 class="car-name" th:text="${car.name}">Car Name</h2>
+          <p class="car-desc" th:text="${car.description}">Description.</p>
+
+          <div class="car-footer">
+            <span class="car-price">
+              From $<span th:text="${car.formattedPrice}">0</span>
+            </span>
+
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+              <!-- Remove from wishlist -->
+              <form th:action="@{/wishlist/remove/{id}(id=${car.id})}" method="post" style="display:inline;">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <button type="submit"
+                        style="font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase;
+                               color:#8A8580; background:transparent; border:1px solid rgba(255,255,255,0.15);
+                               padding:0.5rem 1rem; cursor:pointer; transition:all 0.2s;"
+                        onmouseover="this.style.borderColor='#8B0000'; this.style.color='#FF6B6B'"
+                        onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='#8A8580'">
+                  Remove
+                </button>
+              </form>
+
+              <!-- View detail -->
+              <a th:href="@{/cars/{id}(id=${car.id})}"
+                 style="font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase;
+                        color:#C9A84C; text-decoration:none;">
+                Configure →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+  </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
